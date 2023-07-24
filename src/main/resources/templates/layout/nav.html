@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<script src="https://kit.fontawesome.com/5a854a2686.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/static/css/layout.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<link rel="stylesheet" href="/static/css/main.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
+</head>
+<body>
+    <main class="main-cl-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 p-0 m-0 position-relative">
+                    <div class="header-menu text-white">
+                        <i class="fa-solid fa-list"></i>
+                        Danh mục sản phẩm
+                        <i class="fa-solid fa-circle-arrow-down ml-3"></i>
+                    </div>
+                    <ul class="menu-list">
+                        <li class="menu-item w-100">
+                            <a href="#" class="menu-link d-flex justify-content-between">
+                                <span>Thời trang nam</span>
+                                 <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </li>
+                        <li class="menu-item w-100">
+                            <a href="#" class="menu-link d-flex justify-content-between">
+                                <span>Thời trang nữ</span>
+                                 <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </li>
+                        <li class="menu-item w-100">
+                            <a href="#" class="menu-link d-flex justify-content-between">
+                                <span>Phụ kiện</span>
+                                 <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </li>
+                        <li class="menu-item w-100">
+                            <a href="#" class="menu-link d-flex justify-content-between">
+                                <span>Trang sức</span>
+                                 <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </li>
+                        <li class="menu-item w-100">
+                            <a href="#" class="menu-link d-flex justify-content-between">
+                                <span>Túi xách</span>
+                                 <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-9">
+                    <ul class="nav header-nav ">
+                        <li class="nav-item">
+                          <a class="nav-link text-white" href="#">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link text-white" href="#">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link text-white" href="#">Sản phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Tin tức</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Liên hệ</a>
+                          </li>
+                      </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+                    <section id="image-carousel" class="splide" aria-label="Beautiful Images">
+                        <div class="splide__track">
+                              <ul class="splide__list">
+                                  <li class="splide__slide">
+                                      <img src="/images/slide1.png" alt="">
+                                  </li>
+                                  <li class="splide__slide">
+                                      <img src="/images/slider1.png" alt="">
+                                  </li>
+                                  <li class="splide__slide">
+                                      <img src="/images/slider3.png" alt="">
+                                  </li>
+                              </ul>
+                        </div>
+                      </section>
+                </div>
+            </div>
+            <div class="row">
+
+                <section id="image-discount" style="width: 100%;" class="splide" aria-label="Beautiful Images">
+                    <div class="splide__track">
+                          <ul class="splide__list">
+                              <li class="splide__slide">
+                                  <img src="/images/dis1.jpg" width="397px" alt="">
+                              </li>
+                              <li class="splide__slide">
+                                  <img src="/images/dis2.jpg" width="397px" alt="">
+                              </li>
+                              <li class="splide__slide">
+                                  <img src="/images/dis2.png" width="397px" alt="">
+                              </li>
+                              <li class="splide__slide">
+                                <img src="/images/dis4.png" width="397px" alt="">
+                            </li>
+                          </ul>
+                    </div>
+                  </section>
+            </div>
+            <div class="row">
+                <div class="product-heading">
+                    <h4>Sản phẩm</h4>
+                </div>
+            </div>
+            <div class="row mt-3" style="border: 1px solid #e7e7e7;">
+                <div class="col">
+                    <label for="">Sản phẩm/Trang</label>
+                    <select name="" id="">
+                        <option value="">10</option>
+                        <option value="">20</option>
+                        <option value="">30</option>
+                        <option value="">40</option>
+                        <option value="">50</option>
+                    </select>
+                </div>
+                <div class="col float-right">
+                    <div class="float-right">
+                        <label for="">Sắp xếp</label>
+                        <select name="" id="">
+                            <option value="">Mặc định</option>
+                            <option value="">Giá tăng dần</option>
+                            <option value="">Giá giảm dần</option>
+                            <option value="">Tên sản phẩm: A - Z</option>
+                            <option value="">Tên sản phẩm: Z - A</option>
+                        </select>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-3">
+                    <div class="product">
+                        <div class="product-img-wrap position-relative">
+                            <img src="/images/product/tui1.jpg" alt="" class="product-img">
+                            <button class="btn main-cl-bg product-img-button">Xem thêm</button>
+                        </div>
+                        
+                        <div class="product-content">
+                            <h4 class="product-content-heading">Túi xách Thời trang cao cấp Marksax MS01</h4>
+                            <ul class="product-rate">
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                            </ul>
+                            <div class="product-price">
+                                <h4 class="product-price-new">247.500 đ</h4>
+                                <h4 class="product-price-old">275.000 đ</h4>
+                            </div>
+                        </div>
+                        <span class="product-discount">-10%</span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="product">
+                        <div class="product-img-wrap position-relative">
+                            <img src="/images/product/tui1.jpg" alt="" class="product-img">
+                            <button class="btn main-cl-bg product-img-button">Xem thêm</button>
+                        </div>
+                        
+                        <div class="product-content">
+                            <h4 class="product-content-heading">Túi xách Thời trang cao cấp Marksax MS01</h4>
+                            <ul class="product-rate">
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                            </ul>
+                            <div class="product-price">
+                                <h4 class="product-price-new">247.500 đ</h4>
+                                <h4 class="product-price-old">275.000 đ</h4>
+                            </div>
+                        </div>
+                        <span class="product-discount">-10%</span>
+                        <div class="product-button d-flex">
+                            <button class="">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
+                            <button class="">
+                                <i class="fa-solid fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="product">
+                        <div class="product-img-wrap position-relative">
+                            <img src="/images/product/tui1.jpg" alt="" class="product-img">
+                            <button class="btn main-cl-bg product-img-button">Xem thêm</button>
+                        </div>
+                        
+                        <div class="product-content">
+                            <h4 class="product-content-heading">Túi xách Thời trang cao cấp Marksax MS01</h4>
+                            <ul class="product-rate">
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                            </ul>
+                            <div class="product-price">
+                                <h4 class="product-price-new">247.500 đ</h4>
+                                <h4 class="product-price-old">275.000 đ</h4>
+                            </div>
+                        </div>
+                        <span class="product-discount">-10%</span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="product">
+                        <div class="product-img-wrap position-relative">
+                            <img src="/images/product/tui1.jpg" alt="" class="product-img">
+                            <button class="btn main-cl-bg product-img-button">Xem thêm</button>
+                        </div>
+                        
+                        <div class="product-content">
+                            <h4 class="product-content-heading">Túi xách Thời trang cao cấp Marksax MS01</h4>
+                            <ul class="product-rate">
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-star"></i>
+                                </li>
+                            </ul>
+                            <div class="product-price">
+                                <h4 class="product-price-new">247.500 đ</h4>
+                                <h4 class="product-price-old">275.000 đ</h4>
+                            </div>
+                        </div>
+                        <span class="product-discount">-10%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/static/js/Myjs/layout.js"></script>
+    <script>
+        new Splide( '#image-carousel' ).mount(window.splide.Extensions);
+        var splide = new Splide( '#image-discount', {
+            type: 'loop',
+            perPage: 3,
+            rewind : true,
+            perMove: 1,
+            autoplay: true
+            });
+
+            splide.mount();
+      </script>
+</body>
+</html>
