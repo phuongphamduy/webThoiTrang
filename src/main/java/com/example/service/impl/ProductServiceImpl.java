@@ -17,6 +17,11 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getProduct() {
 		return dao.findAll();
 	}
+
+	@Override
+	public Product findById(Long id) {
+		return dao.findById(id).get();
+	}
 	
 	
 }

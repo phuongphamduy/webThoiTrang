@@ -36,7 +36,7 @@
 		</div>
 		<div class="row mt-3">
 			<div class="col-3 mt-3" th:each="p : ${products}" th:object="${p}">
-				<a href="/detail"  class="product">
+				<a th:href="@{|/detail/*{id}|}"  class="product">
 					<div class="product-img-wrap position-relative">
 						<img th:src="@{|/images/product/*{image}|}" alt="" class="product-img">
 						<button class="btn main-cl-bg product-img-button">Xem
