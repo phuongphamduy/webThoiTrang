@@ -19,4 +19,9 @@ public class ProductController {
 	public String detail() {
 		return "product/product_detail";
 	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "login/login";
+	}
 }
