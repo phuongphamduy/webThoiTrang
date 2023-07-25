@@ -20,6 +20,10 @@
     position: relative;
 }
 
+.product:hover {
+    text-decoration: none;
+}
+
 .product-img-wrap {
     position: relative;
 }
