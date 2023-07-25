@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div th:fragment="product">
+	<div th:fragment="product" ng-app="myProduct" ng-controller="myCtrl">
 		<div class="row">
 			<div class="product-heading">
 				<h4>Sản phẩm</h4>
@@ -35,17 +35,16 @@
 			</div>
 		</div>
 		<div class="row mt-3">
-			<div class="col-3">
-				<div class="product">
+			<div class="col-3 mt-3" th:each="p : ${products}" th:object="${p}">
+				<a href="/detail"  class="product">
 					<div class="product-img-wrap position-relative">
-						<img src="/images/product/tui1.jpg" alt="" class="product-img">
+						<img th:src="@{|/images/product/*{image}|}" alt="" class="product-img">
 						<button class="btn main-cl-bg product-img-button">Xem
 							thêm</button>
 					</div>
 
 					<div class="product-content">
-						<h4 class="product-content-heading">Túi xách Thời trang cao
-							cấp Marksax MS01</h4>
+						<h4 class="product-content-heading">[[*{name}]]</h4>
 						<ul class="product-rate">
 							<li><i class="fa-solid fa-star"></i></li>
 							<li><i class="fa-solid fa-star"></i></li>
@@ -54,11 +53,11 @@
 							<li><i class="fa-solid fa-star"></i></li>
 						</ul>
 						<div class="product-price">
-							<h4 class="product-price-new">247.500 đ</h4>
-							<h4 class="product-price-old">275.000 đ</h4>
+							<h4 class="product-price-new">[[${#numbers.formatDecimal(p.price - (p.price * p.discount / 100), 0, 'COMMA', 3, 'POINT')}]]đ</h4>
+							<h4 class="product-price-old">[[${#numbers.formatDecimal(p.price, 0, 'COMMA', 3, 'POINT')}]]đ</h4>
 						</div>
 					</div>
-					<span class="product-discount">-10%</span>
+					<span class="product-discount">-[[*{discount}]]%</span>
 					<div class="product-button d-flex">
 						<button class="">
 							<i class="fa-solid fa-cart-shopping"></i>
@@ -67,111 +66,10 @@
 							<i class="fa-solid fa-heart"></i>
 						</button>
 					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="product">
-					<div class="product-img-wrap position-relative">
-						<img src="/images/product/tui1.jpg" alt="" class="product-img">
-						<button class="btn main-cl-bg product-img-button">Xem
-							thêm</button>
-					</div>
-
-					<div class="product-content">
-						<h4 class="product-content-heading">Túi xách Thời trang cao
-							cấp Marksax MS01</h4>
-						<ul class="product-rate">
-							<li><i class="fa-solid fa-star"></i></li>
-							<li><i class="fa-solid fa-star"></i></li>
-							<li><i class="fa-solid fa-star"></i></li>
-							<li><i class="fa-solid fa-star"></i></li>
-							<li><i class="fa-solid fa-star"></i></li>
-						</ul>
-						<div class="product-price">
-							<h4 class="product-price-new">247.500 đ</h4>
-							<h4 class="product-price-old">275.000 đ</h4>
-						</div>
-					</div>
-					<span class="product-discount">-10%</span>
-					<div class="product-button d-flex">
-						<button class="">
-							<i class="fa-solid fa-cart-shopping"></i>
-						</button>
-						<button class="">
-							<i class="fa-solid fa-heart"></i>
-						</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="product">
-					<div class="product-img-wrap position-relative">
-						<img src="/images/product/tui1.jpg" alt="" class="product-img">
-						<button class="btn main-cl-bg product-img-button">Xem
-							thêm</button>
-					</div>
-
-					<div class="product-content">
-						<h4 class="product-content-heading">Túi xách Thời trang cao
-							cấp Marksax MS01</h4>
-						<ul class="product-rate">
-							<li><i class="fa-solid fa-star"></i></li>
-							<li><i class="fa-solid fa-star"></i></li>
-							<li><i class="fa-solid fa-star"></i></li>
-							<li><i class="fa-solid fa-star"></i></li>
-							<li><i class="fa-solid fa-star"></i></li>
-						</ul>
-						<div class="product-price">
-							<h4 class="product-price-new">247.500 đ</h4>
-							<h4 class="product-price-old">275.000 đ</h4>
-						</div>
-					</div>
-					<span class="product-discount">-10%</span>
-					<div class="product-button d-flex">
-						<button class="">
-							<i class="fa-solid fa-cart-shopping"></i>
-						</button>
-						<button class="">
-							<i class="fa-solid fa-heart"></i>
-						</button>
-					</div>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="product">
-					<div class="product-img-wrap position-relative">
-						<img src="/images/product/tui1.jpg" alt="" class="product-img">
-						<button class="btn main-cl-bg product-img-button">Xem
-							thêm</button>
-					</div>
-
-					<div class="product-content">
-						<h4 class="product-content-heading">Túi xách Thời trang cao
-							cấp Marksax MS01</h4>
-						<ul class="product-rate">
-							<li><i class="fa-solid fa-star"></i></li>
-							<li><i class="fa-solid fa-star"></i></li>
-							<li><i class="fa-solid fa-star"></i></li>
-							<li><i class="fa-solid fa-star"></i></li>
-							<li><i class="fa-solid fa-star"></i></li>
-						</ul>
-						<div class="product-price">
-							<h4 class="product-price-new">247.500 đ</h4>
-							<h4 class="product-price-old">275.000 đ</h4>
-						</div>
-					</div>
-					<span class="product-discount">-10%</span>
-					<div class="product-button d-flex">
-						<button class="">
-							<i class="fa-solid fa-cart-shopping"></i>
-						</button>
-						<button class="">
-							<i class="fa-solid fa-heart"></i>
-						</button>
-					</div>
-				</div>
+				</a>
 			</div>
 		</div>
+		<script src="/js/Myjs/product/product.js"></script>
 	</div>
 
 </body>
