@@ -1,5 +1,5 @@
 
-if(location.href.includes('nav')) {
+if(!location.href.includes('/main')) {
     document.querySelector(".menu-list").style.display = 'none';
     $(document).ready(() => {
         $('.header-menu').hover(() => {

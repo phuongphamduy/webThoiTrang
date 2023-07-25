@@ -5,8 +5,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ProductController {
-	@RequestMapping("/hello")
+	@RequestMapping("/main")
 	public String hello() {
 		return "product/main";
+	}
+	
+	@RequestMapping("/hello1")
+	public String hello1() {
+		return "product/product_ofCate";
+	}
+	
+	@RequestMapping("/detail")
+	public String detail() {
+		return "product/product_detail";
 	}
 }

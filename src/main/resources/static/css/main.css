@@ -12,7 +12,7 @@
 .product-heading h4 {
     color: #646464;
     text-transform: uppercase;
-    font-size: 17px;
+    font-size: 30px;
     font-weight: 400;
 }
 
@@ -43,6 +43,10 @@
     animation: fade;
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
+}
+
+.product-button button:hover {
+    background-color: #429A9D !important;
 }
 
 @keyframes fade {
