@@ -45,6 +45,10 @@
     animation-fill-mode: forwards;
 }
 
+.product-button button:hover {
+    background-color: #429A9D !important;
+}
+
 @keyframes fade {
     from {
         opacity: 0;

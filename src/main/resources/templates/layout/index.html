@@ -6,9 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
-<script src="https://kit.fontawesome.com/5a854a2686.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/layout.css">
 <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/detail.css">
+<link rel="stylesheet" href="/css/slick.css">
+<script src="/js/jquery.min.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="https://kit.fontawesome.com/5a854a2686.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
@@ -21,17 +25,5 @@
 		<footer th:replace="/layout/footer.html"></footer>
 	</div>
 	<script src="/js/Myjs/layout.js"></script>
-    <script>
-        new Splide( '#image-carousel' ).mount(window.splide.Extensions);
-        var splide = new Splide( '#image-discount', {
-            type: 'loop',
-            perPage: 3,
-            rewind : true,
-            perMove: 1,
-            autoplay: true
-            });
-
-            splide.mount();
-      </script>
 </body>
 </html>
