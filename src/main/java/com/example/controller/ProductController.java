@@ -41,4 +41,9 @@ public class ProductController {
 	public String login() {
 		return "login/login";
 	}
+	
+	@RequestMapping("/signup")
+	public String signup() {
+		return "login/signup";
+	}
 }
