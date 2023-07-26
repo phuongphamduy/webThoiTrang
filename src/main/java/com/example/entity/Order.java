@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,30 +12,32 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name ="Products")
-public class Product implements Serializable {
+@Table(name = "Orders")
+public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
-	String name;
-	String image;
-	Double price;
-	Integer discount;
+	Integer id;
+	@Temporal(TemporalType.DATE)
+	Date createdate;
+	String address;
 	@ManyToOne
-	@JoinColumn(name = "categoryid")
-	Category category;
-	@OneToMany(mappedBy = "product")
+	@JoinColumn(name = "username")
+	Account account;
+	@OneToMany(mappedBy = "order")
 	List<OrderDetail> orderDetails;
 }
