@@ -1,0 +1,38 @@
+.title-item {
+  display: flex;
+  justify-content: center;
+  color: #d6d5d5;
+  padding-top: 10px;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.block-icon-header {
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.icon-header {
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.text-icon-header {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: rgb(255, 99, 99);
+  border: none;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 500;
+  height: 20px;
+  width: 20px;
+  top: -2px;
+  left: 10px;
+}

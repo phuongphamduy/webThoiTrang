@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/admin/index ::dynamic(~{:: main})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <div style="margin-left: 15%; padding: 10px">
+            <span style="font-size: 40px">Danh sách người dùng</span>
+
+            <div class="card">
+                <div class="card-header">Bảng danh sách</div>
+                <div class="card-body">
+                    <!-- search -->
+                    <jsp:include page="/views/Admin/Layout/search.jsp"></jsp:include>
+                    <table class="table table-light">
+                        <thead style="font-size: 1.2rem; font-weight: 500; text-align: center">
+                            <td><b>Tài khoản</b></td>
+                            <td><b>Mật khẩu</b></td>
+                            <td><b>Fullname</b></td>
+                            <td><b>Email</b></td>
+                            <td><b>Admin</b></td>
+                        </thead>
+                        <tbody style="text-align: center">
+                            <c:forEach items="${userItems}" var="acc">
+                                <tr class="table-active">
+                                    <td>${acc.username}</td>
+                                    <td>${acc.password}</td>
+                                    <td>${acc.fullname}</td>
+                                    <td>${acc.email}</td>
+                                    <td>
+                                        <form class="text-center" action="/admin/user/update?id=${acc.username }"
+                                            method="post">
+                                            <input name="isAdmin" value="${!acc.admin }" type="checkbox" ${acc.admin
+                                                ? 'checked' : '' } onChange="this.form.submit()">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
