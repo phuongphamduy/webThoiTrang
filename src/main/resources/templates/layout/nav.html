@@ -15,33 +15,9 @@
                         <i class="fa-solid fa-circle-arrow-down ml-3"></i>
                     </div>
                     <ul class="menu-list">
-                        <li class="menu-item w-100">
-                            <a href="#" class="menu-link d-flex justify-content-between">
-                                <span>Thời trang nam</span>
-                                 <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </li>
-                        <li class="menu-item w-100">
-                            <a href="#" class="menu-link d-flex justify-content-between">
-                                <span>Thời trang nữ</span>
-                                 <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </li>
-                        <li class="menu-item w-100">
-                            <a href="#" class="menu-link d-flex justify-content-between">
-                                <span>Phụ kiện</span>
-                                 <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </li>
-                        <li class="menu-item w-100">
-                            <a href="#" class="menu-link d-flex justify-content-between">
-                                <span>Trang sức</span>
-                                 <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </li>
-                        <li class="menu-item w-100">
-                            <a href="#" class="menu-link d-flex justify-content-between">
-                                <span>Túi xách</span>
+                        <li class="menu-item w-100" th:each="c : ${cates}" th:object="${c}">
+                            <a th:href="@{|/category/*{id}|}" class="menu-link d-flex justify-content-between">
+                                <span>[[*{name}]]</span>
                                  <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </li>
