@@ -5,10 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class CheckOrderController {
+public class CartController {
 	
-	@RequestMapping("/checkorder")
-	public String index(Model model) {
-		return "product/checkorder";
+	
+	@RequestMapping("/cart")
+	public String cart(Model model) {
+		return "cart/cart";
 	}
 }

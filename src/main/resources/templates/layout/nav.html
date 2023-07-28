@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -50,7 +50,7 @@
                 <div class="col-md-9">
                     <ul class="nav header-nav ">
                         <li class="nav-item">
-                          <a class="nav-link text-white" href="#">Trang chủ</a>
+                          <a class="nav-link text-white" th:href="@{/main}">Trang chủ</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link text-white" href="#">Giới thiệu</a>

@@ -17,23 +17,23 @@
                       </ul>
                     <ul class="nav float-right mb-2 mt-2 ">
                         <li class="nav-item ">
-                          <a class="nav-link" href="#">
+                          <a class="nav-link" th:href="@{/checkorder}">
                             <i class="fa-solid fa-pen-to-square"></i>
                             Kiểm tra đơn hàng
                         </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">
+                          <a class="nav-link" th:href="@{/cart}">
                             <i class="fa-solid fa-cart-shopping"></i>
                             Giỏ hàng</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">
+                          <a class="nav-link" th:href="@{/form}">
                             <i class="fa-solid fa-arrow-right-to-bracket"></i>
                             Đăng nhập</a>
                         </li>
                         <li class="nav-item">
-                          <a th:href="" class="nav-link " href="#">
+                          <a th:href="@{/formSignUp}" class="nav-link ">
                             <i class="fa-solid fa-key"></i>
                             Đăng ký</a>
                         </li>
@@ -73,7 +73,7 @@
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control p-3 input-search" placeholder="Tìm kiếm" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
-                                  <button class="btn main-cl-bg text-white mb-0" type="button">
+                                  <button class="btn main-cl-bg text-white" type="button">
                                   	<i class="fa-solid fa-magnifying-glass"></i>
                                   </button>
                                 </div>

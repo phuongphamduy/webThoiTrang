@@ -36,19 +36,4 @@ public class ProductController {
 		model.addAttribute("products", products);
 		return "product/product_detail";
 	}
-
-	@RequestMapping("/login")
-	public String login() {
-		return "login/login";
-	}
-
-	@RequestMapping("/signup")
-	public String signup() {
-		return "login/signup";
-	}
-
-	@RequestMapping("/cart")
-	public String cart() {
-		return "cart/cart";
-	}
 }

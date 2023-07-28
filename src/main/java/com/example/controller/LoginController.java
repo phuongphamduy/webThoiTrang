@@ -6,8 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
+	
 	@RequestMapping("/form")
 	public String form(Model model) {
-		return "";
+		return "login/login";
+	}
+	
+	@RequestMapping("/formSignUp")
+	public String signUp(Model model) {
+		return "login/signup";
 	}
 }
