@@ -24,12 +24,13 @@
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
 </head>
 <body>
-	<div>
+	<div ng-app="shopping-cart" ng-controller="cartCtrl">
 		<header th:replace="/layout/header.html"></header>
 		<nav th:replace="/layout/nav.html"></nav>
 		<main th:replace="${main}"></main>
 		<footer th:replace="/layout/footer.html"></footer>
 	</div>
 	<script src="/js/Myjs/main.js"></script>
+	<script src="/js/Myjs/shoppingCart.js"></script>
 </body>
 </html>
