@@ -13,9 +13,13 @@ public class CartController {
 		return "cart/cart";
 	}
 	
-	@RequestMapping("/cart/add/{id}")
-	public String add(@PathVariable("id") Long id) {
-		
-		return "cart/cart";
+	@RequestMapping("/cart/pay")
+	public String payForm() {
+		return "cart/payForm";
+	}
+	
+	@RequestMapping("/cart/success")
+	public String success() {
+		return "cart/paySuccess";
 	}
 }
