@@ -93,9 +93,9 @@
                                 </span>
                             </div>
                             <div class="button text-right">
-                                <a class="btn btn-default" href="/" onclick="window.history.back()">Tiếp tục mua
+                                <a class="btn btn-default" th:href="@{/main}" onclick="window.history.back()">Tiếp tục mua
                                     hàng</a>
-                                <a class="btn btn-primary" href="/thanh-toan.html">Tiến hành thanh toán</a>
+                                <a class="btn btn-primary" th:href="@{/cart/pay}">Tiến hành thanh toán</a>
                             </div>
                         </div>
                     </div>

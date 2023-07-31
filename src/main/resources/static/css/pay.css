@@ -52,3 +52,28 @@
     color: #429a9d;
 }
 
+.product-list {
+    padding: 0;
+    list-style: none;
+}
+
+.product-item {
+    border-bottom: 1px solid #979797;
+}
+
+.product-link {
+    color: black;
+    font-size: 14px;
+}
+
+.product-link:hover {
+    color: #429a9d;
+    text-decoration: none;
+}
+
+.product-link-price {
+    float: right;
+}
+
+
+
