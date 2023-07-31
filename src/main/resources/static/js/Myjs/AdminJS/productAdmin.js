@@ -1,17 +1,24 @@
-var app = angular.module("myProduct", []);
+var app = angular.module("myproduct", []);
 const url = "http://localhost:8080/rest/product";
 
-app.controller("myCtrl", function ($scope, $http) {
+app.controller("myctrl", ($scope, $http) => {
+  $scope.form = {};
   $scope.product = [];
 
-  $scope.initialize = function () {
+  $scope.reset = () => {
+    $scope.form = {};
+  };
+
+  $scope.load_all = () => {
     $http
       .get(url)
-      .then((resp) => {
-        $scope.product = resp.data;
+      .then((res) => {
+        $scope.product = res.data;
+        $scope.category = res.data.category;
+        console.log("success", res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("error", error);
       });
   };
 
@@ -29,5 +36,5 @@ app.controller("myCtrl", function ($scope, $http) {
       });
   };
 
-  $scope.initialize();
+  $scope.load_all();
 });

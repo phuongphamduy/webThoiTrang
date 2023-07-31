@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
+
 <body>
 	<div th:fragment="product" ng-app="myProduct" ng-controller="myCtrl">
 		<div class="row">
@@ -36,7 +38,7 @@
 		</div>
 		<div class="row mt-3">
 			<div class="col-3 mt-3" th:each="p : ${products}" th:object="${p}">
-				<a th:href="@{|/detail/*{id}|}"  class="product">
+				<a th:href="@{|/detail/*{id}|}" class="product">
 					<div class="product-img-wrap position-relative">
 						<img th:src="@{|/images/product/*{image}|}" alt="" class="product-img">
 						<button class="btn main-cl-bg product-img-button">Xem
@@ -53,8 +55,10 @@
 							<li><i class="fa-solid fa-star"></i></li>
 						</ul>
 						<div class="product-price">
-							<h4 class="product-price-new">[[${#numbers.formatDecimal(p.price - (p.price * p.discount / 100), 0, 'COMMA', 3, 'POINT')}]]đ</h4>
-							<h4 class="product-price-old">[[${#numbers.formatDecimal(p.price, 0, 'COMMA', 3, 'POINT')}]]đ</h4>
+							<h4 class="product-price-new">[[${#numbers.formatDecimal(p.price - (p.price * p.discount /
+								100), 0, 'COMMA', 3, 'POINT')}]]đ</h4>
+							<h4 class="product-price-old">[[${#numbers.formatDecimal(p.price, 0, 'COMMA', 3,
+								'POINT')}]]đ</h4>
 						</div>
 					</div>
 					<span class="product-discount">-[[*{discount}]]%</span>
@@ -73,4 +77,5 @@
 	</div>
 
 </body>
+
 </html>

@@ -1,13 +1,24 @@
 package com.example.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.service.CategoryService;
+import com.example.service.ProductService;
+
 @Controller
 public class AdminController {
+    @Autowired
+    ProductService service;
+
+    @Autowired
+    CategoryService accountService;
+
     @RequestMapping("/admin")
     public String index(Model model) {
+
         return "admin/index";
     }
 
@@ -28,6 +39,8 @@ public class AdminController {
 
     @RequestMapping("/admin/product/formproduct")
     public String formProduct(Model model) {
+        model.addAttribute("products", service.getProduct());
+
         return "admin/product/form-product";
     }
 
