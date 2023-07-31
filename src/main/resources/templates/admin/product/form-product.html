@@ -16,94 +16,83 @@
 
 </head>
 
-<body>
+<body th:fragment="product" ng-app="myProduct" ng-controller="myCtrl">
 
     <main>
-        <form:form action="/admin/product/create" modelAttribute="productItem" method="post"
-            class="me-auto ms-auto w-50 mt-3 row" enctype="multipart/form-data">
-            <div style="margin-left: 15%; padding: 10px">
-                <span style="font-size: 40px">Form Sản phẩm</span>
 
-                <c:if test="${not empty success_product}">
-                    <div class="alert alert-success" role="alert">
-                        ${success_product}</div>
-                </c:if>
+        <div style="margin-left: 15%; padding: 10px">
+            <span style="font-size: 40px">Form Sản phẩm</span>
+
+            <c:if test="${not empty success_product}">
+                <div class="alert alert-success" role="alert">
+                    ${success_product}</div>
+            </c:if>
 
 
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Cập nhật</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row g-3">
-                            <!-- <form:input path="id" type="hidden" /> -->
-                            <div class="col-md-6">
-                                <label for="name" class="form-label"><b>Tên sản phẩm</b></label>
-                                <form:input type="text" class="form-control" path="name" />
-                                <form:errors path="name" class="form-text text-danger" />
-                                <c:if test="${not empty error_product}">
-                                    <div class="form-text text-danger">${error_product}</div>
-                                </c:if>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="discount" class="form-label"><b>Giảm giá</b></label>
-                                <form:input type="text" class="form-control" path="discount" />
-                                <form:errors path="discount" class="form-text text-danger" />
-                                <c:if test="${not empty error_product}">
-                                    <div class="form-text text-danger">${error_product}</div>
-                                </c:if>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="price" class="form-label"><b>Giá sản phẩm</b></label>
-                                <form:input type="number" class="form-control" path="price" />
-                                <form:errors path="price" class="form-text text-danger" />
-                                <c:if test="${not empty error_product}">
-                                    <div class="form-text text-danger">${error_product}</div>
-                                </c:if>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="category" class="form-label"><b>Loại</b></label>
-                                <form:select path="category" class="form-select" aria-label="Default select example">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Cập nhật</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <!-- <form:input path="id" type="hidden" /> -->
+                        <div class="col-md-6">
+                            <label for="name" class="form-label"><b>Tên sản phẩm</b></label>
+                            <input ng-model="form.name" type="text" class="form-control" path="name" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="discount" class="form-label"><b>Giảm giá</b></label>
+                            <input ng-model="form.discount" type="text" class="form-control" path="discount" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="price" class="form-label"><b>Giá sản phẩm</b></label>
+                            <input ng-model="form.price" type="number" class="form-control" path="price" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="category" class="form-label"><b>Loại</b></label>
+                            <!-- <form:select path="category" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listCategory}" var="f">
                                         <form:option value="${f}">${f}</form:option>
                                     </c:forEach>
-                                </form:select>
-                                <c:if test="${not empty error_product}">
+                                </form:select> -->
+                            <!-- <c:if test="${not empty error_product}">
                                     <div class="form-text text-danger">${error_product}</div>
-                                </c:if>
+                                </c:if> -->
+                            <div class="custom-select" style="width:200px;">
+                                <select ng-repeat="sp in product" th:object="${sp}">
+                                    <option>[{{email}}]</option>
+                                </select>
                             </div>
-                            <div class="col-md-6">
-                                <label for="image" class="form-label"><b>Chọn hình</b></label>
-                                <input type="file" class="form-control" name="img" />
-                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="image" class="form-label"><b>Chọn hình</b></label>
+                            <input ng-model="form.image" type="file" class="form-control" name="img" />
+                        </div>
 
-                            <div class="col-md-6">
-                                <label for="createdate" class="form-label"><b>Ngày
-                                        bán</b></label>
+                        <!-- <div class="col-md-6">
+                                
                                 <form:input type="date" class="form-control" path="createdate" />
                                 <form:errors path="createdate" class="form-text text-danger" />
                                 <c:if test="${not empty error_product}">
                                     <div class="form-text text-danger">${error_product}</div>
                                 </c:if>
-                            </div>
-                            <div class="col-12" style="padding: 10px;">
-                                <button formaction="/admin/product/create" type="submit"
-                                    class="btn btn-primary">Thêm</button>
-                                <button formaction="/admin/product/update" type="submit"
-                                    class="btn btn-warning">Sửa</button>
-                                <button formaction="/admin/product/formproduct" type="submit" class="btn btn-danger">Làm
-                                    mới</button>
-                            </div>
+                            </div> -->
+                        <div class="col-12" style="padding: 10px;">
+                            <button ng-click="create()" type="submit" class="btn btn-primary">Thêm</button>
+                            <button formaction="/admin/product/update" type="submit"
+                                class="btn btn-warning">Sửa</button>
+                            <button formaction="/admin/product/formproduct" type="submit" class="btn btn-danger">Làm
+                                mới</button>
                         </div>
                     </div>
-
                 </div>
+
             </div>
+        </div>
 
 
-        </form:form>
         <div style="margin-left: 15%; padding: 10px">
-            <span style="font-size: 40px">Danh sách người dùng</span>
+            <span style="font-size: 40px">Danh sách sản phẩm</span>
 
             <div class="card">
                 <div class="card-header">Bảng danh sách</div>
@@ -117,29 +106,30 @@
                             <td><b>Giảm giá</b></td>
                             <td><b>Loại</b></td>
                             <td><b>Hình</b></td>
-                            <td><b>Ngày</b></td>
+                            <!-- <td><b>Ngày</b></td> -->
                             <td><b>Action</b></td>
                         </thead>
                         <tbody style="text-align: center">
-                            <c:forEach items="${productItems}" var="sp">
-                                <tr class="table">
-                                    <td>${sp.name }</td>
-                                    <td>
-                                        <fmt:formatNumber pattern="#,##0" value="${sp.price }" /> VNĐ
-                                    </td>
-                                    <td>${sp.discount }</td>
-                                    <td>${sp.category.name }</td>
-                                    <td><img src="${pageContext.request.contextPath }/views/image/product/${sp.image}"
-                                            height="50px" width="70px" alt=""></td>
-                                    <td>
-                                        <fmt:formatDate value="${sp.createdate}" pattern="dd-MM-yyyy" />
-                                    </td>
-                                    <td>
-                                        <a href="/admin/product/edit?id=${sp.id}" class="btn btn-warning">Edit</a>
-                                        <a href="/admin/product/delete?id=${sp.id}" class="btn btn-danger">Xóa</a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                            <!-- <c:forEach items="${productItems}" var="sp"> -->
+                            <tr class="table" th:each="sp : ${products}" th:object="${sp}">
+
+                                <td>[[*{name}]]</td>
+                                <td>
+                                    <fmt:formatNumber pattern="#,##0" value="${sp.price }" />[[*{price}]] VNĐ
+                                </td>
+                                <td>-[[*{discount}]]%</td>
+                                <td>[[*{category.name}]]</td>
+                                <td><img th:src="@{|/images/product/*{image}|}" height="70px" width="70px"
+                                        style="object-fit: cover;" alt=""></td>
+                                <!-- <td>
+                                    <fmt:formatDate value="${sp.createdate}" pattern="dd-MM-yyyy" />
+                                </td> -->
+                                <td>
+                                    <a href="/admin/product/edit?id=${sp.id}" class="btn btn-warning">Edit</a>
+                                    <a href="/admin/product/delete?id=${sp.id}" class="btn btn-danger">Xóa</a>
+                                </td>
+                            </tr>
+                            <!-- </c:forEach> -->
 
 
                         </tbody>
@@ -149,6 +139,7 @@
         </div>
 
     </main>
+    <script src="../../../static/js/Myjs/AdminJS/productAdmin.js"></script>
 </body>
 
 </html>
