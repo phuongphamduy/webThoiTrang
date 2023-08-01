@@ -6,21 +6,12 @@
     <title>Insert title here</title>
 </head>
 
-<body>
+<body >
 
-    <main>
-        <form:form action="/admin/form/categorycreate" modelAttribute="categoryItem" method="post"
-            class="me-auto ms-auto w-50 mt-3 row" enctype="multipart/form-data">
-
-
+    <main  ng-app="myapp" ng-controller="category-ctrl" >
+        <form class="me-auto ms-auto w-50 mt-3 row">
             <div style="margin-left: 15%; padding: 10px">
                 <span style="font-size: 40px">Form danh mục</span>
-
-                <c:if test="${not empty success_category}">
-                    <div class="alert alert-success" role="alert">
-                        ${success_category}</div>
-                </c:if>
-
                 <div class="card">
                     <div class="card-header">
                         <h4>Cập nhật</h4>
@@ -30,31 +21,20 @@
 
                             <div class="col-md-6">
                                 <label for="id" class="form-label"><b>Id</b></label>
-                                <form:input class="form-control" type="text" path="id" />
-                                <form:errors path="id" class="form-text text-danger" />
-                                <c:if test="${not empty error_category}">
-                                    <div class="form-text text-danger">${error_category}</div>
-                                </c:if>
+                                <input ng-model="form.id" class="form-control" type="text" />
                             </div>
                             <div class="col-md-6">
                                 <label for="name" class="form-label"><b>Thể loại</b></label>
-                                <form:input class="form-control" type="text" path="name" />
-                                <form:errors path="name" class="form-text text-danger" />
-                                <c:if test="${not empty error_category}">
-                                    <div class="form-text text-danger">${error_category}</div>
-                                </c:if>
+                                <input ng-model="form.name" class="form-control" type="text" />
 
-                            </div>
-                            <div class="col-md-12">
-                                <label for="img" class="form-label"><b>Hình</b></label> <input class="form-control"
-                                    type="file" name="img">
                             </div>
 
                             <div class="col-12" style="padding: 10px;">
-                                <button formaction="/admin/form/categorycreate" type="submit"
+                                <button formaction="/admin/form/categorycreate" type="submit" ng-click="create()"
                                     class="btn btn-primary">Thêm</button>
-                                <button formaction="/admin/form/danhmuc" type="submit" class="btn btn-danger">Làm
+                                <button formaction="/admin/form/danhmuc" type="submit" ng-click="reset()" class="btn btn-danger">Làm
                                     mới</button>
+                                <button formaction="/admin/form/danhmuc" type="submit" ng-click="update()" class="btn btn-info">Cập nhật</button>
 
                             </div>
                         </div>
@@ -63,7 +43,7 @@
                 </div>
 
             </div>
-        </form:form>
+        </form>
 
         <div style="margin-left: 15%; padding: 10px">
             <span style="font-size: 40px">Danh sách các loại sản phẩm</span>
@@ -75,26 +55,26 @@
                     <table class="table table-light">
                         <thead style="font-size: 1.2rem; font-weight: 500; text-align: center">
                             <td><b>ID</b></td>
-                            <td><b>Tên Loại</b></td>
-                            <td><b>Logo</b></td>
+                            <td><b>Tên loại</b></td>
+                            <td><b>Thao tác</b></td>
                         </thead>
-                        <tbody style="text-align: center">
-                            <c:forEach items="${categoryItems}" var="ca">
-                                <tr class="table-active">
-                                    <td>${ca.id }</td>
-                                    <td>${ca.name }</td>
-                                    <td><img src="${pageContext.request.contextPath }/views/image/category/${ca.image}"
-                                            height="50px" width="70px" alt=""></td>
-                                </tr>
-                            </c:forEach>
-
-
+                        <tbody style="text-align: center" >
+                            <tr ng-repeat="cate in items">
+                                <td>{{cate.id}}</td>
+                                <td>{{cate.name}}</td>
+                                <td>
+                                    <div class="btn-group" >
+                                        <button ng-click="edit(cate)" class="btn btn-warning">edit</button>
+                                        <button ng-click="delete(cate)" class="btn btn-danger">xóa</button>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
+        <script src="/js/Myjs/AdminJS/CategoriesAdmin.js"></script>
     </main>
 </body>
 
