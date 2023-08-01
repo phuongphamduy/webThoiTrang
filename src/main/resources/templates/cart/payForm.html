@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<link rel="stylesheet" href="/static/css/bootstrap.min.css">
-<link rel="stylesheet" href="/static/css/pay.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/css/pay.css">
 </head>
 
 <body>
@@ -27,79 +26,88 @@
 										hàng của tôi</span><span class="step-number"><a>1</a></span>
 								</li>
 								<li class="payment active col-md-2 col-xs-12 col-sm-4"><span><i
-										class="glyphicon glyphicon-usd"></i></span><span>Thanh toán</span><span
-									class="step-number"><a>2</a></span></li>
+											class="glyphicon glyphicon-usd"></i></span><span>Thanh toán</span><span
+										class="step-number"><a>2</a></span></li>
 								<li class="finish col-md-2 col-xs-12 col-sm-4"><span><i
-										class="glyphicon glyphicon-ok"></i></span><span>Hoàn tất</span><span
-									class="step-number"><a>3</a></span></li>
+											class="glyphicon glyphicon-ok"></i></span><span>Hoàn tất</span><span
+										class="step-number"><a>3</a></span></li>
 							</ul>
 						</div>
 						<div class="payform-content">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="payform-block">
-										<h4>1. Địa chỉ thanh toán và giao hàng</h4>
-										<div class="payform-block-content">
-											<label for="">Thông tin thanh toán</label>
-											<div class="payform-block-login">
-												<a href="">Đăng ký tài khoản mua hàng</a> <a href="">Đăng
-													nhập</a>
-											</div>
-											<form>
+							<form action="">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="payform-block">
+											<h4>1. Địa chỉ thanh toán và giao hàng</h4>
+											<div class="payform-block-content">
+												<label for="">Thông tin thanh toán</label>
+												<div class="payform-block-login">
+													<a href="">Đăng ký tài khoản mua hàng</a> <a href="">Đăng
+														nhập</a>
+												</div>
 												<div class="form-group">
+													<span id="user" ng-hide="true">phuongpd</span>
 													<label for="exampleInputEmail1"
 														style="font-weight: bold; font-size: 12px;">Mua
 														hàng không cần tài khoản</label> <input type="text"
 														class="form-control" id="exampleInputEmail1"
-														aria-describedby="emailHelp" placeholder="Họ và tên">
+														aria-describedby="emailHelp" placeholder="Họ và tên"
+														ng-model="name" required>
 													<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 												</div>
 												<div class="form-group">
-													<input type="text" class="form-control"
-														id="exampleInputPassword1" placeholder="Số điện thoại">
+													<input type="tel" class="form-control"
+														pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone"
+														ng-model="phone" placeholder="Số điện thoại">
 												</div>
 												<div class="form-group">
-													<input type="text" class="form-control"
-														id="exampleInputPassword1" placeholder="Địa chỉ">
+													<input type="text" class="form-control" id="exampleInputPassword1"
+														ng-model="address" placeholder="Địa chỉ" required>
 												</div>
 												<div class="form-group">
 													<textarea name="" id="" style="width: 100%;" rows="3"
-														placeholder="Ghi chú đơn hàng"></textarea>
+														placeholder="Ghi chú đơn hàng" ng-model="note"></textarea>
 												</div>
-											</form>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="payform-block">
-										<h4>2. Thông tin đơn hàng</h4>
-										<ul class="product-list">
-											<li ng-repeat="item in cart.items" class="product-item">
-												<a ng-href="/detail/{{item.id}}" class="product-link">
-													<div class="product-link-content d-flex">
-														<img ng-src="/images/product/{{item.image}}" height="60px" alt="">
-														<div class="product-link-text ml-5">
-															<p class="product-link-name">{{item.name}} x <span class="product-link-qty">{{item.qty}}</span></p>
-															<p class="product-link-price">{{(item.price - (item.price * item.discount / 100)) * item.qty | number : 3}}đ</p>
+									<div class="col-md-6">
+										<div class="payform-block">
+											<h4>2. Thông tin đơn hàng</h4>
+											<ul class="product-list">
+												<li ng-repeat="item in cart.items" class="product-item">
+													<a ng-href="/detail/{{item.id}}" class="product-link">
+														<div class="product-link-content d-flex">
+															<img ng-src="/images/product/{{item.image}}" height="60px"
+																alt="">
+															<div class="product-link-text ml-5">
+																<p class="product-link-name">{{item.name}} x <span
+																		class="product-link-qty">{{item.qty}}</span></p>
+																<p class="product-link-price">{{(item.price -
+																	(item.price * item.discount / 100)) * item.qty |
+																	number : 3}}đ</p>
+															</div>
 														</div>
-													</div>
-												</a>
-											</li>
-										</ul>
-										<div class="payform-block-content ">
-											<div
-												class="payform-block-price d-flex justify-content-between">
-												<label for="">Thành tiền</label> <label for="">{{cart.getSum() | number : 3}}đ</label>
+													</a>
+												</li>
+											</ul>
+											<div class="payform-block-content ">
+												<div class="payform-block-price d-flex justify-content-between">
+													<label for="">Thành tiền</label> <label for="">{{cart.getSum() |
+														number : 3}}đ</label>
+												</div>
+												<div class="payform-block-sumPrice d-flex justify-content-between">
+													<label for="">Thanh toán</label> <label for="">{{cart.getSum() |
+														number : 3}}đ</label>
+												</div>
+												<button type="submit" class="btn btn-primary float-right"
+													ng-click="order.purchase()">Đặt hàng</button>
 											</div>
-											<div
-												class="payform-block-sumPrice d-flex justify-content-between">
-												<label for="">Thanh toán</label> <label for="">{{cart.getSum() | number : 3}}đ</label>
-											</div>
-											<button class="btn btn-primary float-right">Đặt hàng</button>
 										</div>
 									</div>
 								</div>
-							</div>
+							</form>
+
 						</div>
 					</div>
 				</div>

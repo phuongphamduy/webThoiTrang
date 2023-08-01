@@ -1,6 +1,10 @@
 const app = angular.module("shopping-cart", []);
 
+
 app.controller("cartCtrl", function($scope, $http) {
+
+    $scope.userId;
+
     $scope.cart = {
         items: [],
 
@@ -48,6 +52,43 @@ app.controller("cartCtrl", function($scope, $http) {
             var sum = 0;
             this.items.forEach(item => sum+=((item.price - (item.price * item.discount / 100)) * item.qty))
             return sum;
+        }
+    }
+
+    $scope.order = {
+        account: {username: $('#user').text()},
+        createdate: new Date(),
+        address: $scope.address,
+        phone: $scope.phone,
+        note: $scope.note,
+        get orderDetails() {
+            return $scope.cart.items.map(item => {
+                return {
+                    product: {id: item.id},
+                    price: item.price * item.discount,
+                    quantity: item.qty
+                }
+            })
+        },
+        purchase() {
+            var phoneno = /^\d{10}$/;
+            var inputPhone = $('#phone').text();
+            if(inputPhone.match(phoneno)) {
+                var order = angular.copy(this);
+                $http.post("/rest/orders", order)
+                .then(resp => {
+                    alert("Đặt hàng thành công");
+                    $scope.cart.clear();
+                    location.href= "/cart/success/" + resp.data.id;
+                })
+                .catch(error => {
+                    alert("thanh toán thất bại")
+                    console.log(error);
+                })
+            }else {
+                alert("Số điện thoại chưa nhập đúng");
+            }
+            
         }
     }
 

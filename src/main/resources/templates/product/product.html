@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
+
 <body>
 	<div th:fragment="product">
 		<div class="row">
@@ -13,13 +15,18 @@
 		</div>
 		<div class="row mt-3" style="border: 1px solid #e7e7e7;">
 			<div class="col">
-				<label for="">Sản phẩm/Trang</label> <select name="" id="">
-					<option value="">10</option>
-					<option value="">20</option>
-					<option value="">30</option>
-					<option value="">40</option>
-					<option value="">50</option>
-				</select>
+				<form action="/main" method="get">
+					<label for="">Sản phẩm/Trang</label>
+					<select onchange="this.form.submit()" name="NProduct" id="">
+						<option value=""></option>
+						<option value="10">10</option>
+						<option value="20">20</option>
+						<option value="30">30</option>
+						<option value="40">40</option>
+						<option value="50">50</option>
+					</select>
+				</form>
+
 			</div>
 			<div class="col float-right">
 				<div class="float-right">
@@ -36,7 +43,7 @@
 		</div>
 		<div class="row mt-3">
 			<div class="col-3 mt-3" th:each="p : ${products}" th:object="${p}">
-				<a th:href="@{|/detail/*{id}|}"  class="product">
+				<a th:href="@{|/detail/*{id}|}" class="product">
 					<div class="product-img-wrap position-relative">
 						<img th:src="@{|/images/product/*{image}|}" alt="" class="product-img">
 						<button class="btn main-cl-bg product-img-button">Xem
@@ -53,12 +60,14 @@
 							<li><i class="fa-solid fa-star"></i></li>
 						</ul>
 						<div class="product-price">
-							<h4 class="product-price-new">[[${#numbers.formatDecimal(p.price - (p.price * p.discount / 100), 0, 'COMMA', 3, 'POINT')}]]đ</h4>
-							<h4 class="product-price-old">[[${#numbers.formatDecimal(p.price, 0, 'COMMA', 3, 'POINT')}]]đ</h4>
+							<h4 class="product-price-new">[[${#numbers.formatDecimal(p.price - (p.price * p.discount /
+								100), 0, 'COMMA', 3, 'POINT')}]]đ</h4>
+							<h4 class="product-price-old">[[${#numbers.formatDecimal(p.price, 0, 'COMMA', 3,
+								'POINT')}]]đ</h4>
 						</div>
 					</div>
 					<span class="product-discount">-[[*{discount}]]%</span>
-					<form class="product-button d-flex" >
+					<form class="product-button d-flex">
 						<button th:attr="ng-click=@{|cart.add(*{id})|}" class="">
 							<i class="fa-solid fa-cart-shopping"></i>
 						</button>
@@ -69,7 +78,18 @@
 				</a>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col">
+				<div class="navigation d-flex justify-content-center">
+					<ul class="pagination">
+						<li th:each="number : ${pageList}"><a th:href="@{|/main?page=${number}|}">[[${number}]]</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 </body>
+
 </html>

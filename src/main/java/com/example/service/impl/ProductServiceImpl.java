@@ -3,6 +3,8 @@ package com.example.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.ProductDAO;
@@ -21,6 +23,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product findById(Long id) {
 		return dao.findById(id).get();
+	}
+
+	@Override
+	public Page<Product> getProductPage(Pageable pageable) {
+		return dao.findAll(pageable);
 	}
 	
 	
