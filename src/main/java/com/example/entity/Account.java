@@ -10,6 +10,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,9 +28,14 @@ import lombok.Setter;
 @Table(name = "Accounts")
 public class Account implements Serializable {
 	@Id
+	@NotBlank
 	String username;
+	@NotBlank
 	String password;
+	@NotBlank
+	@Email
 	String email;
+	@NotBlank
 	String fullname;
 	Boolean gender;
 	@Temporal(TemporalType.DATE)
