@@ -16,6 +16,14 @@ if(!location.href.includes('/main')) {
     })
 }
 
+var listA = document.querySelectorAll('.pagination li a');
+
+listA.forEach(a => {
+    if(a.href.toString() === location.href.toString()) {
+        a.parentElement.classList.add("active");
+    }
+})
+
 
 
 

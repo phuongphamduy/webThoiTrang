@@ -26,9 +26,7 @@
                     <script type="text/javascript">
                         $(".link-site-more").hover(function () { $(this).find(".s-c-n").show(); }, function () { $(this).find(".s-c-n").hide(); });
                     </script>
-                    <script src="/app/services/orderServices.js"></script>
-                    <script src="/app/controllers/orderController.js"></script>
-                    <div class="cart-content" ng-controller="orderController" ng-init="initOrderCartController()">
+                    <div class="cart-content" ng-controller="cartCtrl">
                         <h1 class="title"><span>Giỏ hàng của tôi</span></h1>
                         <div class="steps clearfix" style="margin-left: 297px;">
                             <ul class="clearfix">
@@ -59,28 +57,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="item in OrderDetails">
+                                        <tr ng-repeat="item in cart.items">
                                             <td class="des">
-                                                <!-- <h2>{{item.ProductName}}</h2>
-                                                <span>{{item.VariantName}}</span> -->
+                                                <h2>{{item.name}}</h2>
                                             </td>
                                             <td class="image">
-                                                <img ng-src="{{item.ProductImage}}" class="img-responsive" />
+                                                <img ng-src="/images/product/{{item.image}}" class="img-responsive" />
                                             </td>
                                             <td class="price">
-                                                <!-- {{item.Price | number:0}}đ -->
+                                               {{(item.price - (item.price * item.discount / 100)) | number : 3}}đ
                                             </td>
                                             <td class="quantity">
-                                                <!-- <input type="number" value="1" class="text" ng-model="item.Quantity"
-                                                    ng-change="updateItemCart(item)" /> -->
+                                                <input type="number" value="1" class="text" min="1" ng-model="item.qty"
+                                                    ng-change="cart.saveToLocalStore()" />
                                             </td>
                                             <td class="amount">
-                                                <!-- {{ item.Amount| number:0 }}đ -->
+                                                {{((item.price - (item.price * item.discount / 100)) * item.qty) | number : 3}}đ
                                             </td>
                                             <td class="remove">
-                                                <a ng-click="removeItemCart(item)" href="javascript:void(0)">
-                                                    <i class="glyphicon glyphicon-trash"></i>
-                                                </a>
+                                                <button class="btn btn-primary" ng-click="cart.remove(item.id)">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -88,15 +85,17 @@
                             </div>
                             <div class="clearfix text-right">
                                 <span><b>Tổng thanh toán:</b></span>
-                                <span class="pay-price">
-                                    <!-- {{ Amount| number:0 }}đ -->
+                                <span class="pay-price" ng-if="cart.getSum() > 0">
+                                    {{cart.getSum() | number : 3}}đ
+                                </span>
+                                <span class="pay-price" ng-if="cart.getSum() == 0">
                                     0đ
                                 </span>
                             </div>
                             <div class="button text-right">
-                                <a class="btn btn-default" href="/" onclick="window.history.back()">Tiếp tục mua
+                                <a class="btn btn-default" th:href="@{/main}" onclick="window.history.back()">Tiếp tục mua
                                     hàng</a>
-                                <a class="btn btn-primary" href="/thanh-toan.html">Tiến hành thanh toán</a>
+                                <a class="btn btn-primary" th:href="@{/cart/pay}">Tiến hành thanh toán</a>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,79 @@
+
+.payform-block h4 {
+    color: white;
+    background-color: #429a9d;
+    padding: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+}
+
+.payform-block-content {
+    padding: 10px;
+    border: 1px solid #979797;
+    height: 400px;
+}
+
+.payform-block-login {
+    margin-bottom: 10px;
+}
+
+.payform-block-login a {
+    color: #429a9d;
+
+}
+
+.payform-block-login a:first-child {
+    border-right: 1px solid #ccc;
+    padding-right: 10px;
+}
+
+.payform-block-price label {
+    font-weight: bold;
+}
+
+.payform-block-price label:first-child {
+    font-size: 12px;
+}
+
+.payform-block-price {
+    border-bottom: 1px solid #ccc;
+
+}
+
+.payform-block-sumPrice label {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.payform-block-sumPrice label:last-child {
+    text-transform: none;
+    color: #429a9d;
+}
+
+.product-list {
+    padding: 0;
+    list-style: none;
+}
+
+.product-item {
+    border-bottom: 1px solid #979797;
+}
+
+.product-link {
+    color: black;
+    font-size: 14px;
+}
+
+.product-link:hover {
+    color: #429a9d;
+    text-decoration: none;
+}
+
+.product-link-price {
+    float: right;
+}
+
+
+

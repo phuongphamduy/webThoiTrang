@@ -1,0 +1,34 @@
+.paySuccess-content {
+    padding: 50px;
+    border: 1px solid #ccc;
+}
+
+.paySuccess-content h1 {
+    font-weight: 400;
+}
+
+.paySuccess-content .orderId,
+.paySuccess-content .orderDate {
+    font-weight: bold;
+}
+
+.paySuccess-content h4 {
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.sumPrice {
+    color: #429a9d;
+    font-size: 18px;
+}
+
+.success-button-group button {
+    background-color: #429a9d;
+}
+
+.success-button-group button:hover {
+    background-color: #262626;
+}
