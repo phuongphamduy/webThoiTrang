@@ -25,4 +25,19 @@ public class CategoryServiceImpl implements CategoryService {
 		return dao.findById(id).get().getProducts();
 	}
 
+	@Override
+	public Category create(Category category) {
+		return dao.save(category);
+	}
+
+	@Override
+	public Category update(Category category) {
+		return dao.save(category);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		dao.deleteById(id);
+	}
+
 }
