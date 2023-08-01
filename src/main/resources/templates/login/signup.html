@@ -52,7 +52,7 @@
 							class="col-md-8 col-md-offset-2 col-xs-12 col-sm-12 col-xs-offset-0 col-sm-offset-0">
 							<form
 								class="form-horizontal ng-pristine ng-invalid ng-invalid-required ng-valid-email"
-								th:object="${account}" th:action="@{/account/index}" method="post" ng-submit="register()">
+								th:object="${account}" th:action="@{/rest/accounts/create}" method="post" ng-submit="register()">
 								<h2>
 									<span>Thông tin tài khoản</span>
 								</h2>
@@ -314,8 +314,8 @@
 								</div>								
 								<div class="form-group">
 									<div class="col-sm-offset-4 col-sm-8 text-center">
-										<button type="submit" class="btn btn-default"
-											th:formaction="@{/accounts/create} ng-click="create()" fdprocessedid="73vjsl">Đăng ký</button>
+										<button class="btn btn-default"
+											 ng-click="create()" fdprocessedid="73vjsl">Đăng ký</button>
 									</div>
 								</div>
 							</form>
