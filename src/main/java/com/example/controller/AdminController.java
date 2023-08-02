@@ -39,7 +39,7 @@ public class AdminController {
 
     @RequestMapping("/admin/product/formproduct")
     public String formProduct(Model model) {
-        model.addAttribute("products", service.getProduct());
+        model.addAttribute("products", service.getProduct());			
 
         return "admin/product/form-product";
     }
