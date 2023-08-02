@@ -1,7 +1,5 @@
 package com.example.controller;
 
-
-
 import java.util.Optional;
 
 import javax.mail.MessagingException;
@@ -23,40 +21,42 @@ import com.example.dao.AccountDAO;
 import com.example.entity.Account;
 import com.example.service.MailService;
 
-
 @Controller
 public class LoginController {
 	@Autowired
 	AccountDAO dao;
-	
+
 	@Autowired
 	MailService mail;
-	
+
 	@RequestMapping("/form")
 	public String form(Model model) {
 		return "login/login";
 	}
-	
+
 	@RequestMapping("/formSignUp")
 	public String signUp(Model model) {
 		return "login/signup";
 	}
-	
+
 //	@PostMapping("/formSignUp/create")
-//	public String SignUp(Model model, @Validated @ModelAttribute("account") Account acc, BindingResult result) {
+//	public String SignUp(Model model, @Validated @ModelAttribute("account") Account acc,
+//	@RequestParam("rePass") String rePass ,BindingResult result) {
 //				
 //			if(!dao.findById(acc.getUsername()).isEmpty()) {
 //				model.addAttribute("error", "Username đã tồn tại");	
 //			}else {
+//				if(acc.getPassword().equals(rePass) && !result.hasErrors()){
 //				dao.save(acc);
 //				model.addAttribute("success", "Đăng ký thành công");
 //				System.out.println("thành công");
+//				}
 //			}					
 //		
 //		model.addAttribute("accounts", dao.findAll());
 //		return "login/signup";
 //	}
-	
+
 	@PostMapping("/formSignUp")
 	public String doSignUp(@Valid @ModelAttribute("account") Account acc, BindingResult result,
 			@RequestParam("rePass") String rePass, Model model) {
@@ -64,7 +64,7 @@ public class LoginController {
 		if (account.isPresent()) {
 			if (account.get().getActivated()) {
 				model.addAttribute("isHave", true);
-				return "signUp";
+				return "login/signup";
 			}
 		} else {
 			model.addAttribute("isHave", false);
@@ -93,7 +93,7 @@ public class LoginController {
 		return "login/signup";
 
 	}
-	
+
 	@RequestMapping("/confirm")
 	public String xacnhan(@ModelAttribute("account") Account acc, Model model) {
 		model.addAttribute("email1", acc.getEmail());
@@ -111,7 +111,5 @@ public class LoginController {
 		}
 		return "login/xacnhan";
 	}
-	
-	
-}	
 
+}
