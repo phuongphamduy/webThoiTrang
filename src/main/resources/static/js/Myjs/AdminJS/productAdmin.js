@@ -50,7 +50,7 @@ app.controller("myCtrl", ($scope, $http) => {
     var data = new FormData();
     data.append("file", files[0]);
     $http
-      .post("/rest/upload/images", data, {
+      .post("/rest/upload/product", data, {
         transformRequest: angular.identity,
         headers: { "Content-Type": undefined },
       })
@@ -67,7 +67,7 @@ app.controller("myCtrl", ($scope, $http) => {
   $scope.update = () => {
     var item = angular.copy($scope.form);
     $http
-      .put(`/rest/product/${item.id}`, item)
+      .put(`/rest/products/${item.id}`, item)
       .then((res) => {
         var index = $scope.product.findIndex((p) => p.id == item.id);
         $scope.product[index] = item;
@@ -84,7 +84,7 @@ app.controller("myCtrl", ($scope, $http) => {
   $scope.delete = () => {
     var item = angular.copy($scope.form);
     $http
-      .put(`/rest/product/${item.id}`, item)
+      .delete(`/rest/products/${item.id}`, item)
       .then((res) => {
         var index = $scope.product.findIndex((p) => p.id == item.id);
         $scope.product.splice(index, 1);
