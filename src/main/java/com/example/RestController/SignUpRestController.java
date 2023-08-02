@@ -15,7 +15,6 @@ import com.example.service.AccountService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/rest/accounts")
 public class SignUpRestController {
 	@Autowired
 	AccountDAO dao;

@@ -52,7 +52,10 @@
 							class="col-md-8 col-md-offset-2 col-xs-12 col-sm-12 col-xs-offset-0 col-sm-offset-0">
 							<form
 								class="form-horizontal ng-pristine ng-invalid ng-invalid-required ng-valid-email"
-								th:object="${account}" th:action="@{/rest/accounts/create}" method="post" ng-submit="register()">
+								action="/formSignUp/create" th-object="account" method="post" >
+								<th:if test="${not empty success}">
+									<div class="alert alert-success" role="alert">${success}</div>
+								</th:if>
 								<h2>
 									<span>Thông tin tài khoản</span>
 								</h2>
@@ -61,18 +64,18 @@
 										khoản<span class="warning">(*)</span>
 									</label>
 									<div class="col-sm-9">
-										<input th-field="*{username}" type="text"
+										<input name="username" path="username" type="text"
 											class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
-											ng-model="Code" required="true" fdprocessedid="xq3z1">
+											ng-model="Code" required="true" fdprocessedid="xq3z1"/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="Email" class="col-sm-3 control-label">Email<span
 										class="warning">(*)</span></label>
 									<div class="col-sm-9">
-										<input th-field="*{email}" type="email"
+										<input path="email" name="email" type="email"
 											class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
-											ng-model="Email" required="true" fdprocessedid="irkz1">
+											ng-model="Email" required="true" fdprocessedid="irkz1"/>
 									</div>
 								</div>
 								<div class="form-group">
@@ -80,9 +83,9 @@
 										khẩu<span class="warning">(*)</span>
 									</label>
 									<div class="col-sm-9">
-										<input th-field="*{password}" type="password"
+										<input name="password" path="password" type="password"
 											class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
-											ng-model="Password" required="true" fdprocessedid="mf0caj">
+											ng-model="Password" required="true" fdprocessedid="mf0caj"/>
 									</div>
 								</div>
 								<div class="form-group">
@@ -90,9 +93,14 @@
 										lại mật khẩu<span class="warning">(*)</span>
 									</label>
 									<div class="col-sm-9">
-										<input type="password"
+										<input type="password" name="rePass"
 											class="form-control ng-pristine ng-untouched ng-valid"
 											ng-model="RePassword" fdprocessedid="ned0po">
+									<th:if test="${re}">
+										<small id="emailHelp" style="color: red !important"
+										class="form-text text-muted">Mật khẩu nhập lại không chính xác
+										</small>
+									</th:if>
 									</div>
 								</div>
 								<h2>Thông tin cá nhân</h2>
@@ -100,15 +108,15 @@
 									<label for="Name" class="col-sm-3 control-label">Họ tên<span
 										class="warning">(*)</span></label>
 									<div class="col-sm-9">
-										<input th-field="*{fullname}" type="text"
+										<input name="fullname" path="fullname" type="text"
 											class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
-											ng-model="Name" required="true" fdprocessedid="5cgeab">
+											ng-model="Name" required="true" fdprocessedid="5cgeab"/>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Giới tính</label>
 									<div class="col-sm-9">
-										<select th-field="*{gender}" class="form-control ng-pristine ng-untouched ng-valid"
+										<select name="gender" path="gender" class="form-control ng-pristine ng-untouched ng-valid"
 											ng-model="GenderId"
 											ng-options="item.Id as item.Name for item in Genders"
 											fdprocessedid="kb3ab9">
@@ -121,7 +129,7 @@
 									<label class="col control-label">Ngày sinh</label>
 									<div class="col-sm-7">
 										<div class="form-inline">
-											<select
+											<select name="birthday" path="birthday"
 												class="col-md-4 form-control ng-pristine ng-untouched ng-valid"
 												ng-model="SelectedDay"
 												ng-options="label for label in Days | limitTo:NumberOfDays"
@@ -307,15 +315,15 @@
 								<div class="form-group">
 									<label for="" class="col-sm-3 control-label">Địa chỉ</label>
 									<div class="col-sm-9">
-										<input th-field="*{address}" type="text"
+										<input name="address" path="address" type="text"
 											class="form-control ng-pristine ng-untouched ng-valid"
-											ng-model="Address" fdprocessedid="6ihj4e">
+											ng-model="Address" fdprocessedid="6ihj4e"/>
 									</div>
 								</div>								
 								<div class="form-group">
 									<div class="col-sm-offset-4 col-sm-8 text-center">
 										<button class="btn btn-default"
-											 ng-click="create()" fdprocessedid="73vjsl">Đăng ký</button>
+											formaction="/formSignUp/create" fdprocessedid="73vjsl">Đăng ký</button>
 									</div>
 								</div>
 							</form>

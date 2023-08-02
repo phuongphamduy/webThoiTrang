@@ -9,5 +9,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 
 public interface AccountDAO extends JpaRepository<Account, String> {
+
+	Account findByEmail(String email);
 	
 }

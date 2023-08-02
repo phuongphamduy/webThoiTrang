@@ -41,6 +41,9 @@ public class Account implements Serializable {
 	@Temporal(TemporalType.DATE)
 	Date birthday;
 	String address;
+	Boolean activated = false;
+	Boolean admin = false;
+	String otp;
 	@OneToMany(mappedBy = "account")
 	List<Authority> authorities;
 	@OneToMany(mappedBy = "account")
