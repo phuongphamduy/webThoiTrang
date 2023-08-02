@@ -15,4 +15,9 @@ public interface ProductService {
 
 	Page<Product> getProductPage(Pageable pageable);
 
+	Product create(Product product);
+
+	Product update(Product product);
+
+	void delete(Long id);
 }
