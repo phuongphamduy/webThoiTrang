@@ -23,6 +23,11 @@ public class ProductRestController {
 
 	@Autowired
 	ProductService service;
+	
+	@GetMapping()
+	public List<Product> getListProduct() {
+		return service.findAll();
+	}
 
 	@GetMapping("{id}")
 	public Product getProduct(@PathVariable("id") Long id) {

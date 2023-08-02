@@ -11,7 +11,7 @@ app.controller("myCtrl", ($scope, $http) => {
   };
 
   $scope.load_all = () => {
-    const url = `${host}/rest/category`;
+    const url = `${host}/rest/categories`;
     $http
       .get(url)
       .then((res) => {
@@ -21,7 +21,7 @@ app.controller("myCtrl", ($scope, $http) => {
         console.log("error", error);
       });
 
-    $http.get(`${host}/rest/product`).then((res) => {
+    $http.get(`${host}/rest/products`).then((res) => {
       $scope.product = res.data;
       console.log(res);
     });
@@ -35,7 +35,7 @@ app.controller("myCtrl", ($scope, $http) => {
   $scope.create = () => {
     var item = angular.copy($scope.form);
     $http
-      .post(`/rest/product`, item)
+      .post(`${host}/rest/products`, item)
       .then((res) => {
         $scope.product.push(res.data);
         $scope.reset();
@@ -55,7 +55,7 @@ app.controller("myCtrl", ($scope, $http) => {
         headers: { "Content-Type": undefined },
       })
       .then((res) => {
-        $scope.form.image = res.data.image;
+        $scope.form.image = res.data.name;
       })
       .catch((error) => {
         alert("lỗi upload hình ảnh");

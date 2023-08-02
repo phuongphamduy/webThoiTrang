@@ -7,7 +7,7 @@ import com.example.entity.Product;
 
 public interface CategoryService {
 
-	List<Product> findAll();
+	List<Category> findAll();
 
 	List<Product> ProductOfCates(Integer id);
 
