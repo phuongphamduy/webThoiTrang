@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <main>
+    <main ng-app="myapp" ng-controller="user-ctrl">
         <div style="margin-left: 15%; padding: 10px">
             <span style="font-size: 40px">Danh sách người dùng</span>
 
@@ -23,30 +23,20 @@
                             <td><b>Mật khẩu</b></td>
                             <td><b>Fullname</b></td>
                             <td><b>Email</b></td>
-                            <td><b>Admin</b></td>
                         </thead>
                         <tbody style="text-align: center">
-                            <c:forEach items="${userItems}" var="acc">
-                                <tr class="table-active">
-                                    <td>${acc.username}</td>
-                                    <td>${acc.password}</td>
-                                    <td>${acc.fullname}</td>
-                                    <td>${acc.email}</td>
-                                    <td>
-                                        <form class="text-center" action="/admin/user/update?id=${acc.username }"
-                                            method="post">
-                                            <input name="isAdmin" value="${!acc.admin }" type="checkbox" ${acc.admin
-                                                ? 'checked' : '' } onChange="this.form.submit()">
-                                        </form>
-                                    </td>
+                                <tr ng-repeat="user in items" class="table-active">
+                                    <td>{{user.username}}</td>
+                                    <td>{{user.password}}</td>
+                                    <td>{{user.fullname}}</td>
+                                    <td>{{user.email}}</td>
                                 </tr>
-                            </c:forEach>
-
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+        <script src="/js/Myjs/AdminJS/UserAdmin.js"></script>
     </main>
 </body>
 
