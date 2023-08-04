@@ -13,6 +13,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
@@ -30,14 +31,14 @@ import lombok.Setter;
 @Table(name = "Accounts")
 public class Account implements Serializable {
 	@Id
-	@NotBlank
+	@NotBlank(message="Tên đăng nhập không được để trống")
 	String username;
-	@NotBlank
+	@NotBlank(message="Mật khẩu không được để trống")
 	String password;
-	@NotBlank
-	@Email
+	@NotBlank(message="Email không được để trống")
+	@Email(message="Email không đúng định dạng")
 	String email;
-	@NotBlank
+	@NotBlank(message="Họ tên không được để trống")
 	String fullname;
 	Boolean gender;
 	@Temporal(TemporalType.DATE)
