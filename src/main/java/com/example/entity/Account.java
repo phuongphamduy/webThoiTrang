@@ -13,6 +13,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -39,6 +41,7 @@ public class Account implements Serializable {
 	String fullname;
 	Boolean gender;
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date birthday;
 	String address;
 	Boolean activated = false;
