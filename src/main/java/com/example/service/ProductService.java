@@ -14,5 +14,9 @@ public interface ProductService {
 	Product findById(Long id);
 
 	Page<Product> getProductPage(Pageable pageable);
+	Product create(Product product);
+	
+
+	
 
 }
