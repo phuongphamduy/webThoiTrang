@@ -1,6 +1,8 @@
 package com.example.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +39,7 @@ public class LoginController {
 	
 	@PostMapping("/formSignUp/create")
 	public String save(Model model, @Validated @ModelAttribute("account") Account acc,
-			@RequestParam("rePass") String rePass, BindingResult result, Errors errors) { 
+			@RequestParam("rePass") String rePass, BindingResult result, Errors errors, HttpSession session) { 
 		if(errors.hasErrors()) {
 			model.addAttribute("message", "Vui lòng sửa các lỗi sau:");			
 		}
@@ -49,8 +51,7 @@ public class LoginController {
 				if (acc.getPassword().equals(rePass) && !result.hasErrors()) {
 					if(acc.getPhone().length()>=9 && acc.getPhone().length()<=15 && !result.hasErrors()) {											
 					dao.save(acc);
-					model.addAttribute("success", "Đăng ký thành công");
-					System.out.println("thành công");
+					session.setAttribute("msg", "Đăng ký thành công");				
 					return "login/success";
 					} else {
 						model.addAttribute("message", "Vui lòng điền lại chính xác các thông tin sau:");
