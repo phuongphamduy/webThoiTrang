@@ -40,14 +40,15 @@ public class ForgotPasswordController {
 		if(user!=null) {
 			return "redirect:/loadResetPassword/" + user.getUsername();
 		}else {
-			session.setAttribute("msg", "Không tồn tại email và số điện thoại");
+			session.setAttribute("msg", "Email và số điện thoại không hợp lệ");
 			return "login/forgot_password";
 		}
 		
 	}
 	
 	@PostMapping("/changePassword")
-	public String changePassword(@RequestParam String password, @RequestParam String username, HttpSession session) {
+	public String changePassword(@RequestParam String password, @RequestParam String username, 
+			HttpSession session) {
 		Account user = dao.findById(username).get();
 		String encryptPsw= passwordEncoder.encode(password);
 		user.setPassword(encryptPsw);
@@ -56,7 +57,7 @@ public class ForgotPasswordController {
 		if(updateUser!=null) {
 			session.setAttribute("msg", "Đổi mật khẩu thành công");			
 		}
-		return "";
+		return "redirect:/loadResetPassword";
 	}
 	
 	

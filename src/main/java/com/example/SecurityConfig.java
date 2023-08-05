@@ -25,18 +25,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		http
-        .authorizeRequests()
-            .antMatchers("/main", "/form", "/formSignUp", "/loadForgotPassword",
-            		"/loadResetPassword/{username}", "/forgotPassword", "/changePassword", "/css/**", "/js/**", "/images/**", "/**").permitAll() // Cho phép tất cả mọi người truy cập vào địa chỉ này
-            .anyRequest().authenticated() // Tất cả các request khác đều cần phải xác thực mới được truy cập
-            .and()
-        .formLogin() // Cho phép người dùng xác thực bằng form login
-            .defaultSuccessUrl("/main")
-            .permitAll() // Tất cả đều được truy cập vào địa chỉ này
-            .and()
-        .logout() // Cho phép logout
-            .permitAll();
+		http.authorizeRequests()
+        .antMatchers("/order/**").authenticated()
+        .antMatchers("/admin/**").hasAnyRole("STAFF", "DIRE")
+        .antMatchers("/rest/authorities").hasRole("DIRE")
+        .anyRequest().permitAll();
 	}
 	
 	@Override
