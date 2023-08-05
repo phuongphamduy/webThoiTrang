@@ -17,10 +17,25 @@ if(!location.href.includes('/main')) {
 }
 
 var listA = document.querySelectorAll('.pagination li a');
+var isActive = false;
 
 listA.forEach(a => {
     if(a.href.toString() === location.href.toString()) {
         a.parentElement.classList.add("active");
+        isActive = true;
+    }
+})
+
+if(!isActive) {
+    listA.item(0).parentElement.classList.add("active");
+}
+
+var listOptions = document.querySelectorAll("#numberP option");
+
+listOptions.forEach(option => {
+    const attrSelected = document.createAttribute("selected");
+    if(location.href.includes(option.getAttribute("value"))) {
+        option.setAttributeNode(attrSelected);
     }
 })
 

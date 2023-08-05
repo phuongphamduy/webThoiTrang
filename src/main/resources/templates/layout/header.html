@@ -66,8 +66,8 @@
                                 <span class="icon"></span>
                                 <span class="icon-text ml-2" style="color: #646464;">
                                     <span id="cart-total">
-                                        0
-                                        sp - 0đ
+                                        {{cart.getNumberProduct()}}
+                                        sp - {{cart.getSum() | number : 3}}đ
                                     </span><i class="fa fa-arrow-right"></i>
                                 </span>
                                 

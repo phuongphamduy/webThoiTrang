@@ -32,7 +32,6 @@ public class CartController {
 
 	@RequestMapping("/cart/pay")
 	public String payForm(Model model) {
-
 		return "cart/payForm";
 	}
 

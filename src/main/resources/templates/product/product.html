@@ -17,8 +17,7 @@
 			<div class="col">
 				<form action="/main" method="get">
 					<label for="">Sản phẩm/Trang</label>
-					<select onchange="this.form.submit()" name="NProduct" id="">
-						<option value=""></option>
+					<select onchange="this.form.submit()" name="NProduct" id="numberP">
 						<option value="10">10</option>
 						<option value="20">20</option>
 						<option value="30">30</option>
@@ -82,7 +81,7 @@
 			<div class="col">
 				<div class="navigation d-flex justify-content-center">
 					<ul class="pagination">
-						<li th:each="number : ${pageList}"><a th:href="@{|/main?page=${number}|}">[[${number}]]</a></li>
+						<li th:each="number : ${pageList}"><a th:href="@{|/main?page=${number}${href}|}">[[${number}]]</a></li>
 					</ul>
 				</div>
 			</div>

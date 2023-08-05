@@ -30,5 +30,9 @@ public class ProductServiceImpl implements ProductService {
 		return dao.findAll(pageable);
 	}
 	
+	@Override
+	public Product create(Product product) {
+		return dao.save(product);
+	}
 	
 }

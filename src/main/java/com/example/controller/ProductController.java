@@ -38,6 +38,11 @@ public class ProductController {
 		Pageable pageable = PageRequest.of(pageN.orElse(0), no.orElse(10));
 		Page<Product> page = service.getProductPage(pageable);
 		List<Integer> pageList = new ArrayList();
+		String href = "";
+		if(no.isPresent()) {
+			href = href + "&NProduct=" + no.orElse(10);
+		}
+		model.addAttribute("href", href);
 		int numberPage = page.getTotalPages();
 		for(int i = 1; i <= numberPage;i++) {
 			pageList.add(i);

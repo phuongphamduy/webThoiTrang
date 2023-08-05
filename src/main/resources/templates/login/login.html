@@ -6,6 +6,7 @@
         <title>Document</title>
     </head>
 
+
     <body>
         <main>
             <div class="container mt-3">
@@ -27,6 +28,33 @@
                                 </li>
                             </ul>
                         </div>
+=======
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="menu-account">
+                        <h3>
+                            <span>
+                                Tài khoản
+                            </span>
+                        </h3>
+                        <ul>
+                           <li><a th:href="@{/form}"><i class="fa fa-sign-in"></i>Đăng
+									nhập</a></li>
+							<li><a th:href="@{/formSignUp}"><i class="fa fa-key"></i>Đăng
+									ký</a></li>
+							<li><a th:href="@{/loadForgotPassword}"><i
+									class="fa fa-key"></i>Quên mật khẩu</a></li>
+                        </ul>
+
                     </div>
                     <div class="col-md-9">
                         <!-- <script type="text/javascript">
