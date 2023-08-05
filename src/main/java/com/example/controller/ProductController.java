@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +29,9 @@ public class ProductController {
 	
 	@Autowired
 	CategoryService accountService;
+	
+	@Autowired
+	HttpServletRequest request;
 
 	@RequestMapping("/main")
 	public String main(Model model, @RequestParam(name = "NProduct", required = false) Optional<Integer> no, @RequestParam(name  = "page", required = false) Optional<Integer> pageN )  {
@@ -56,4 +61,46 @@ public class ProductController {
 		model.addAttribute("products", products);
 		return "product/product_detail";
 	}
+	
+//	@PreAuthorize("hasRole('ADMIN')") //demo4
+	@RequestMapping("/admin/main")
+	public String admins(Model model) {
+		if (!request.isUserInRole("ADMIN")) {
+			return "redirect:/login/access/denied";
+		}
+		model.addAttribute("message", "Hello Administrator");
+		return "admin/index";
+	}
+	
+////	@PreAuthorize("hasAnyRole('ADMIN','USER')") //demo4
+//	@RequestMapping("/users")
+//	public String users(Model model) {
+//		if (!(request.isUserInRole("ADMIN") || request.isUserInRole("USER "))) {
+//			return "redirect:/auth/access/denied";
+//		}
+//		model.addAttribute("message", "Hello Staff");
+//		return "home/index";
+//	}
+//	
+////	@PreAuthorize("isAuthenticated()") //demo4
+//	@RequestMapping("/authenticated")
+//	public String authenticated(Model model) {
+//		if (request.getRemoteUser() == null) {
+//			return "redirect:/auth/login/form";
+//		}
+//		model.addAttribute("message", "Hello Authenticated user");
+//		return "home/index";
+//	}
+//	
+//	@RequestMapping("/thymeleaf1")
+//	public String thymeleaf1(Model model) {
+//		model.addAttribute("message", "Thymeleaf - Without Extras");
+//		return "home/thymeleaf1";
+//	}
+//	
+//	@RequestMapping("/thymeleaf2")
+//	public String thymeleaf2(Model model) {
+//		model.addAttribute("message", "Thymeleaf - With Extras");
+//		return "home/thymeleaf2";
+//	}
 }
