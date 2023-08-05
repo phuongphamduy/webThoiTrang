@@ -4,6 +4,7 @@ const app = angular.module("shopping-cart", []);
 app.controller("cartCtrl", function($scope, $http) {
 
     $scope.userId;
+    $scope.qty = 1;
 
     $scope.cart = {
         items: [],
@@ -21,12 +22,12 @@ app.controller("cartCtrl", function($scope, $http) {
         add(id) {
             var item = this.items.find(item => item.id == id);
             if(item) {
-                item.qty++;
+                item.qty+=$scope.qty;
                 this.saveToLocalStore();
             }else {
                 $http.get(`/rest/products/${id}`)
                 .then(resp => {
-                    resp.data.qty = 1;
+                    resp.data.qty = $scope.qty;
                     this.items.push(resp.data);
                     this.saveToLocalStore();
                 })
@@ -52,6 +53,12 @@ app.controller("cartCtrl", function($scope, $http) {
             var sum = 0;
             this.items.forEach(item => sum+=((item.price - (item.price * item.discount / 100)) * item.qty))
             return sum;
+        },
+
+        getNumberProduct() {
+            var count = 0;
+            this.items.forEach(item => count++);
+            return count;
         }
     }
 

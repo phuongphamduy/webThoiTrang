@@ -1,37 +1,98 @@
-var app = angular.module("myproduct", []);
-const url = "http://localhost:8080/rest/product";
+var app = angular.module("myProduct", []);
+const host = "http://localhost:8080";
 
-app.controller("myctrl", ($scope, $http) => {
-  $scope.form = {};
+app.controller("myCtrl", ($scope, $http) => {
   $scope.product = [];
+  $scope.category = [];
+  $scope.form = {};
 
   $scope.reset = () => {
     $scope.form = {};
   };
 
   $scope.load_all = () => {
+    const url = `${host}/rest/categories`;
     $http
       .get(url)
       .then((res) => {
-        $scope.product = res.data;
-        $scope.category = res.data.category;
-        console.log("success", res.data);
+        $scope.category = res.data;
       })
       .catch((error) => {
         console.log("error", error);
       });
+
+    $http.get(`${host}/rest/products`).then((res) => {
+      $scope.product = res.data;
+      console.log(res);
+    });
   };
 
-  app.create = () => {
+  $scope.edit = function (item) {
+    $scope.form = angular.copy(item);
+    console.log(item);
+  };
+
+  $scope.create = () => {
     var item = angular.copy($scope.form);
     $http
-      .get(url)
+      .post(`${host}/rest/products`, item)
       .then((res) => {
-        $scope.items.push(item);
+        $scope.product.push(res.data);
         $scope.reset();
-        console.log("create");
+        alert("Them moi thanh cong");
       })
       .catch((err) => {
+        console.log("error", err);
+      });
+  };
+  //upload
+  $scope.imageChanged = (files) => {
+    var data = new FormData();
+    data.append("file", files[0]);
+    $http
+      .post("/rest/upload/product", data, {
+        transformRequest: angular.identity,
+        headers: { "Content-Type": undefined },
+      })
+      .then((res) => {
+        $scope.form.image = res.data.name;
+      })
+      .catch((error) => {
+        alert("lỗi upload hình ảnh");
+        console.log("error: ", error);
+      });
+  };
+
+  //update
+  $scope.update = () => {
+    var item = angular.copy($scope.form);
+    $http
+      .put(`/rest/products/${item.id}`, item)
+      .then((res) => {
+        var index = $scope.product.findIndex((p) => p.id == item.id);
+        $scope.product[index] = item;
+        $scope.reset();
+        alert("update thành công");
+      })
+      .catch((err) => {
+        alert("Lỗi cập nhật sản phẩm");
+        console.log("error", err);
+      });
+  };
+
+  //delete
+  $scope.delete = () => {
+    var item = angular.copy($scope.form);
+    $http
+      .delete(`/rest/products/${item.id}`)
+      .then((res) => {
+        var index = $scope.product.findIndex((p) => p.id == item.id);
+        $scope.product.splice(index, 1);
+        $scope.reset();
+        alert("Delete thành công");
+      })
+      .catch((err) => {
+        alert("Delete thất bại");
         console.log("error", err);
       });
   };
