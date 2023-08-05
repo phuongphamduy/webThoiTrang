@@ -5,6 +5,9 @@ app.controller("cartCtrl", function($scope, $http) {
 
     $scope.userId;
     $scope.qty = 1;
+    $scope.address = '';
+    $scope.phone = '';
+    $scope.note = '';
 
     $scope.cart = {
         items: [],
@@ -79,9 +82,12 @@ app.controller("cartCtrl", function($scope, $http) {
         },
         purchase() {
             var phoneno = /((09|03|07|08|05)+([0-9]{8})\b)/g;
-            var inputPhone = $('#phone').text();
-            if(inputPhone.match(phoneno)) {
+            var inputPhone = $('#phone').val();
+            if(phoneno.test(inputPhone)) {
                 var order = angular.copy(this);
+                order.address = $scope.address;
+                order.phone = $scope.phone;
+                order.note = $scope.note;
                 $http.post("/rest/orders", order)
                 .then(resp => {
                     alert("Đặt hàng thành công");
