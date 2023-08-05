@@ -36,9 +36,9 @@ public class LoginController {
 		return "forward:/login/signin/form";
 	}
 	
-	@RequestMapping("/logoff/seccess")
+	@RequestMapping("/logoff/success")
 	public String logoff(Model model) {
-		model.addAttribute("message", "Logoff success");
+		model.addAttribute("message", "Đăng xuất thành công");
 		return "forward:/login/signin/form";
 	}
 	
