@@ -48,6 +48,7 @@ public class Account implements Serializable {
 	Boolean activated = false;
 	Boolean admin = false;
 	String otp;
+	String phone;
 	@OneToMany(mappedBy = "account")
 	List<Authority> authorities;
 	@OneToMany(mappedBy = "account")

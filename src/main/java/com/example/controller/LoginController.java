@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,24 +39,29 @@ public class LoginController {
 	public String save(Model model, @Validated @ModelAttribute("account") Account acc,
 			@RequestParam("rePass") String rePass, BindingResult result, Errors errors) { 
 		if(errors.hasErrors()) {
-			model.addAttribute("message", "Vui lòng sửa các lỗi sau");			
+			model.addAttribute("message", "Vui lòng sửa các lỗi sau:");			
 		}
 		else {
 			if (!dao.findById(acc.getUsername()).isEmpty()) {
-				model.addAttribute("error_user", "Username đã tồn tại!");
-				System.out.println("đã tồn tại");
+				model.addAttribute("message", "Vui lòng điền lại chính xác các thông tin sau:");
+				model.addAttribute("error_user", "Username đã tồn tại!");	
 			} else {
 				if (acc.getPassword().equals(rePass) && !result.hasErrors()) {
+					if(acc.getPhone().length()>=9 && acc.getPhone().length()<=15 && !result.hasErrors()) {											
 					dao.save(acc);
 					model.addAttribute("success", "Đăng ký thành công");
 					System.out.println("thành công");
 					return "login/success";
+					} else {
+						model.addAttribute("message", "Vui lòng điền lại chính xác các thông tin sau:");
+						model.addAttribute("error_phone", "Số điện thoại không hợp lệ!");						
+					}
 				} else {
-					model.addAttribute("error_repass", "Mật khẩu nhập lại không chính xác!");
-					System.out.println("sai mk");								
+					model.addAttribute("message", "Vui lòng điền lại chính xác các thông tin sau:");
+					model.addAttribute("error_repass", "Mật khẩu nhập lại không chính xác!");													
 				}
 			}
-		}
+		}		
 		model.addAttribute("accounts", dao.findAll());
 		return "login/signup";
 	}
@@ -117,5 +123,9 @@ public class LoginController {
 //		}
 //		return "login/xacnhan";
 //	}
+	
+	
+
+	
 
 }
