@@ -78,7 +78,7 @@ app.controller("cartCtrl", function($scope, $http) {
             })
         },
         purchase() {
-            var phoneno = /^\d{10}$/;
+            var phoneno = /((09|03|07|08|05)+([0-9]{8})\b)/g;
             var inputPhone = $('#phone').text();
             if(inputPhone.match(phoneno)) {
                 var order = angular.copy(this);
