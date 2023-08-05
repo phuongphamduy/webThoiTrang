@@ -45,9 +45,6 @@ public class Account implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date birthday;
 	String address;
-	Boolean activated = false;
-	Boolean admin = false;
-	String otp;
 	String phone;
 	@OneToMany(mappedBy = "account")
 	List<Authority> authorities;

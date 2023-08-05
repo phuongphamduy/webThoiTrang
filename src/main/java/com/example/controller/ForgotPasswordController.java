@@ -50,14 +50,13 @@ public class ForgotPasswordController {
 	public String changePassword(@RequestParam String password, @RequestParam String username, 
 			HttpSession session) {
 		Account user = dao.findById(username).get();
-		String encryptPsw= passwordEncoder.encode(password);
-		user.setPassword(encryptPsw);
+		user.setPassword(password);
 		Account updateUser = dao.save(user);
 		
 		if(updateUser!=null) {
 			session.setAttribute("msg", "Đổi mật khẩu thành công");			
 		}
-		return "redirect:/loadResetPassword";
+		return "redirect:/loadResetPassword/";
 	}
 	
 	
