@@ -6,12 +6,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,21 +24,49 @@ import com.example.entity.Account;
 
 
 @Controller
+@RequestMapping("/login")
 public class LoginController {
-	@Autowired
+  
+  @Autowired
 	AccountDAO dao;
 
 //	@Autowired
 //	MailService mail;
 
-	@RequestMapping("/form")
-	public String form(Model model) {
-		return "login/login";
+	
+	@GetMapping("/signin/form")
+	public String doGetForm() {
+		return "login/signin";
 	}
+	
+	@RequestMapping("/signin/success")
+	public String success(Model model) {
+		model.addAttribute("message", "Đăng nhập thành công");
+		return "forward:/login/signin/form";
+	}
+	
+	@GetMapping("/signin/error")
+	public String error(Model model) {
+		model.addAttribute("message", "Sai thông tin đăng nhập");
+		return "forward:/login/signin/form";
+	}
+	
+	@RequestMapping("/logoff/success")
+	public String logoff(Model model) {
+		model.addAttribute("message", "Đăng xuất thành công");
+		return "forward:/login/signin/form";
+	}
+	
+	@RequestMapping("/access/denied")
+	public String denied(Model model) {
+		model.addAttribute("message", "Bạn không có quyền truy cập!");
+		return "login/signin";
+
 
 	@RequestMapping("/formSignUp")
 	public String signUp(Model model) {
 		return "login/signup";
+
 	}
 	
 	@PostMapping("/formSignUp/create")

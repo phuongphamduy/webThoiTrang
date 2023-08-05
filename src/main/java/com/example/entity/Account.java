@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -15,6 +16,8 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,9 +48,12 @@ public class Account implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date birthday;
 	String address;
+
 	String phone;
-	@OneToMany(mappedBy = "account")
+	@JsonIgnore
+	@OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
 	List<Authority> authorities;
+	@JsonIgnore
 	@OneToMany(mappedBy = "account")
 	List<Order> orders;
 }
