@@ -20,8 +20,14 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public Account findById(String id) {
-		return dao.findById(id).get();
+	public Account findById(String username) {
+		return dao.findById(username).get();
+	}
+
+	@Override
+	public Account findById(String id, String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

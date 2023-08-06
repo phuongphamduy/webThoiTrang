@@ -2,95 +2,108 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-    <section class="top-link clearfix">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="nav float-left mb-2 mt-2">
-                        <li class="nav-item">
-                          <p class="nav-link text-white text-center mb-0"><i class="fa-solid fa-phone"></i> Hotline:0908 77 00 95</p>
-                        </li>
-                      </ul>
-                    <ul class="nav float-right mb-2 mt-2 ">
-                        <li class="nav-item ">
-                          <a class="nav-link" th:href="@{/checkorder}">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            Kiểm tra đơn hàng
-                        </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" th:href="@{/cart}">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            Giỏ hàng</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" th:href="@{/admin/main}">
-                            <i class="fa-solid fa-user-gear"></i>
-                            Admin</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" th:href="@{/login/signin/form}">
-                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                            Đăng nhập</a>
-                        </li>
-                        <li class="nav-item">
-                          <a th:href="@{/formSignUp}" class="nav-link ">
-                            <i class="fa-solid fa-key"></i>
-                            Đăng ký</a>
-                        </li>
-                      </ul>
-                      
-                </div>
-            </div>
-        </div>
-    </section>
+	<section class="top-link clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="nav float-left mb-2 mt-2">
+						<li class="nav-item">
+							<p class="nav-link text-white text-center mb-0">
+								<i class="fa-solid fa-phone"></i> Hotline:0908 77 00 95
+							</p>
+						</li>
+					</ul>
+					
+					<ul class="nav float-right mb-2 mt-2 ">
+						<li class="nav-item "><a class="nav-link"
+							th:href="@{/checkorder}"> <i
+								class="fa-solid fa-pen-to-square"></i> Kiểm tra đơn hàng
+						</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/cart}">
+								<i class="fa-solid fa-cart-shopping"></i> Giỏ hàng
+						</a></li>
+						
+						<th:block th:if="${#request.remoteUser}">
+							<li th:if="${#request.isUserInRole('ADMIN')}" class="nav-item"><a class="nav-link"
+							th:href="@{/admin/main}"> <i class="fa-solid fa-user-gear"></i>
+								Administration
+							</a></li>
+							<li  class="nav-item"><a class="nav-link text-light"
+							> <i class="fa-solid fa-circle-user"></i>
+								Welcome [[${#request.remoteUser}]]
+							</a></li>
+							<li  class="nav-item"><a class="nav-link"
+							th:href="@{/signin/logoff}"> <i class="fa-solid fa-right-from-bracket"></i>
+								Logout
+							</a></li>
+						</th:block>
+						
+						<th:block th:unless="${#request.remoteUser}">
+							<li class="nav-item"><a class="nav-link"
+							th:href="@{/login/signin/form}"> <i
+								class="fa-solid fa-arrow-right-to-bracket"></i> Đăng nhập
+							</a></li>
+							<li class="nav-item"><a th:href="@{/formSignUp}"
+								class="nav-link "> <i class="fa-solid fa-key"></i> Đăng ký
+							</a></li>
+							
+						</th:block>
+						
+					</ul>
+					
 
-    <section class="header-content clearfix">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-xs-12 col-sm-12 float-left text-center">
-                    <div class="logo">
-                        <a href="#" title="">
-                            <img alt="" src="/images/logo.png" width="100%" class="img-fluid" />
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-8 col-xs-12 col-sm-12 d-flex flex-row-reverse justify-content-between align-items-center">
-                    <div class="cart">
-                        <div class="heading">
-                            <a class="cart-heading-link d-flex align-items-center" href="#">
-                                <span class="icon"></span>
-                                <span class="icon-text ml-2" style="color: #646464;">
-                                    <span id="cart-total">
-                                        {{cart.getNumberProduct()}}
-                                        sp - {{cart.getSum() | number : 3}}đ
-                                    </span><i class="fa fa-arrow-right"></i>
-                                </span>
-                                
-                            </a>
-                        </div>
-                    </div>
-                    <div th:insert="~{/product/_info.html}"></div>
-                    <div class="search hidden-sm hidden-xs">
-                        <div class="input-cat form-search clearfix">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control p-3 input-search" placeholder="Tìm kiếm" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                  <button class="btn main-cl-bg text-white mb-0" type="button">
-                                  	<i class="fa-solid fa-magnifying-glass"></i>
-                                  </button>
-                                </div>
-                              </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="header-content clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-xs-12 col-sm-12 float-left text-center">
+					<div class="logo">
+						<a href="#" title=""> <img alt="" src="/images/logo.png"
+							width="100%" class="img-fluid" />
+						</a>
+					</div>
+				</div>
+				<div
+					class="col-md-8 col-xs-12 col-sm-12 d-flex flex-row-reverse justify-content-between align-items-center">
+					<div class="cart">
+						<div class="heading">
+							<a class="cart-heading-link d-flex align-items-center" href="#">
+								<span class="icon"></span> <span class="icon-text ml-2"
+								style="color: #646464;"> <span id="cart-total">
+										{{cart.getNumberProduct()}} sp - {{cart.getSum() | number :
+										3}}đ </span><i class="fa fa-arrow-right"></i>
+							</span>
+
+							</a>
+						</div>
+					</div>
+					
+					<div class="search hidden-sm hidden-xs">
+						<div class="input-cat form-search clearfix">
+							<div class="input-group mb-3">
+								<input type="text" class="form-control p-3 input-search"
+									placeholder="Tìm kiếm" aria-label="Recipient's username"
+									aria-describedby="basic-addon2">
+								<div class="input-group-append">
+									<button class="btn main-cl-bg text-white mb-0" type="button">
+										<i class="fa-solid fa-magnifying-glass"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 
 </html>

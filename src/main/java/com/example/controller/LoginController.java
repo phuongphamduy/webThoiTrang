@@ -61,7 +61,7 @@ public class LoginController {
 	public String denied(Model model) {
 		model.addAttribute("message", "Bạn không có quyền truy cập!");
 		return "login/signin";
-
+	}
 
 	@RequestMapping("/formSignUp")
 	public String signUp(Model model) {
