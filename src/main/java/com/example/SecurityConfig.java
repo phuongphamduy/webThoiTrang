@@ -59,13 +59,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.authorizeRequests()
-        .antMatchers("/cart/**").authenticated()
+        .antMatchers("/cart/pay", "/cart/success/**").authenticated()
         .antMatchers("/admin/**").hasAnyRole("USER", "ADMIN")
         .antMatchers("/rest/authorities").hasRole("ADMIN")
         .anyRequest().permitAll();
 		
 		http.formLogin()
-		.loginPage("/login/signin") // khai báo địa chỉ form (get)
+		.loginPage("/login/signin/form") // khai báo địa chỉ form (get)
 		.loginProcessingUrl("/login/signin") // địa chỉ submit
 		.defaultSuccessUrl("/login/signin/success", false) // đăng nhập thành công thì chuyển tới địa chỉ
 		.failureUrl("/login/signin/error"); // đăng nhập thất bại thì chuyển tới địa chỉ

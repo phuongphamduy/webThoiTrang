@@ -3,11 +3,17 @@ const app = angular.module("shopping-cart", []);
 
 app.controller("cartCtrl", function($scope, $http) {
 
+    $http.get("/rest/users")
+    .then(resp => {
+        var user = resp.data.find(user => user.username == $('#user').text())
+        $scope.name = user.fullname;
+        $scope.address = user.address;
+        $scope.phone = user.phone;
+        $scope.note = '';
+    })
     $scope.userId;
     $scope.qty = 1;
-    $scope.address = '';
-    $scope.phone = '';
-    $scope.note = '';
+   
 
     $scope.cart = {
         items: [],

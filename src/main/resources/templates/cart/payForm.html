@@ -34,7 +34,7 @@
 							</ul>
 						</div>
 						<div class="payform-content">
-							<form action="">
+							<form>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="payform-block">
@@ -46,7 +46,7 @@
 														nhập</a>
 												</div>
 												<div class="form-group">
-													<span id="user" ng-hide="true">phuongpd</span>
+													<span id="user" ng-hide="true" >[[${#request.remoteUser}]]</span>
 													<label for="exampleInputEmail1"
 														style="font-weight: bold; font-size: 12px;">Mua
 														hàng không cần tài khoản</label> <input type="text"
