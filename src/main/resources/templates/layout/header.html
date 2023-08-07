@@ -75,7 +75,7 @@
 					class="col-md-8 col-xs-12 col-sm-12 d-flex flex-row-reverse justify-content-between align-items-center">
 					<div class="cart">
 						<div class="heading">
-							<a class="cart-heading-link d-flex align-items-center" href="#">
+							<a class="cart-heading-link d-flex align-items-center" th:href="@{/cart}">
 								<span class="icon"></span> <span class="icon-text ml-2"
 								style="color: #646464;"> <span id="cart-total">
 										{{cart.getNumberProduct()}} sp - {{cart.getSum() | number :
