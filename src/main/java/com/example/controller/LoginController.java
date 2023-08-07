@@ -41,7 +41,7 @@ public class LoginController {
 	
 	@RequestMapping("/signin/success")
 	public String success(Model model) {
-		model.addAttribute("message", "Đăng nhập thành công");
+		model.addAttribute("message1", "Đăng nhập thành công");
 		return "forward:/login/signin/form";
 	}
 	
@@ -53,7 +53,7 @@ public class LoginController {
 	
 	@RequestMapping("/logoff/success")
 	public String logoff(Model model) {
-		model.addAttribute("message", "Đăng xuất thành công");
+		model.addAttribute("message1", "Đăng xuất thành công");
 		return "forward:/login/signin/form";
 	}
 	

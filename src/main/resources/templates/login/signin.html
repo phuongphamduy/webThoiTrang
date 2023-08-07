@@ -17,13 +17,13 @@
                             </h3>
                             <ul>
                                 <li>
-                                    <a href="/dang-nhap.html"><i class="fa fa-sign-in"></i>Đăng nhập</a>
+                                    <a th:href="@{/login/signin/form}"><i class="fa fa-sign-in"></i>Đăng nhập</a>
                                 </li>
                                 <li>
-                                    <a href="/dang-ky.html"><i class="fa fa-key"></i>Đăng ký</a>
+                                    <a th:href="@{/login/formSignUp}"><i class="fa fa-key"></i>Đăng ký</a>
                                 </li>
                                 <li>
-                                    <a href="/thay-doi-mat-khau.html"><i class="fa fa-key"></i>Quên mật khẩu</a>
+                                    <a th:href="@{/loadForgotPassword}"><i class="fa fa-key"></i>Quên mật khẩu</a>
                                 </li>
                                 
                             </ul>
@@ -54,7 +54,8 @@
                                     method="post"
                                     class="form-horizontal ng-pristine ng-valid-email ng-invalid ng-invalid-required"
                                 >
-                                    <i class="mb-3" th:text="${message}" style="color: red"></i>
+                                    <i class="mb-3" th:text="${message}" style="color: red"></i>	
+                                    <i class="mb-3" th:text="${message1}" style="color: green"></i>
                                     <div class="form-group">
                                         <label for="Email" class="col-sm-4 control-label">Username</label>
                                         <div class="col-sm-8">
