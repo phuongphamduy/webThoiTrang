@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/css/main.css" />
+
+<title>Document</title>
+</head>
+<body>
+	<main>
+		<div class="container mt-5" style="align-items: center">
+			<div style="padding: 5px; margin-bottom: 20px">
+				<a href="/main" title="Đến trang chủ">Trang chủ</a> <span> >>
+					Danh sách đơn hàng</span> <span> >> Đơn hàng chi tiết</span>
+			</div>
+			<div style="width: 100%">
+				<div
+					style="display: flex; width: 100%; border-bottom: 2px solid #429a9d">
+					<div style="width: 20%; background-color: #429a9d; padding: 7px">
+						<span style="font-size: 1.6rem; font-weight: 500; color: #fff">Đơn
+							hàng của bạn</span>
+					</div>
+					<span class="title"></span>
+				</div>
+				<div th:object="${order}">
+					<h2>Thông tin đơn hàng</h2>
+					<div class="row-title docs">
+						Đơn hàng của <a href="#">[[*{account.fullname}]]</a> (<b>[[*{id}]]</b>)
+						lúc <span class="grey">[[*{createdate}]]</span>
+					</div>
+					<div class="table-responsive clearfix order-tracking-info">
+						<table class="table table-mycart">
+							<thead>
+								<tr>
+									<th>Sản phẩm</th>
+									<th>Hình ảnh</th>
+									<th>Giá</th>
+									<th>Số lượng</th>
+									<th>Thành tiền</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="item : ${list}" th:object="${item}">
+									<td class="des">
+										<h2>[[*{product.name}]]</h2>
+									</td>
+									<td class="image"><img
+										th:src="@{|/images/product/*{product.image}|}" height="60px" />
+									</td>
+									<td class="price">[[${#numbers.formatDecimal(item.price, 0, 'COMMA', 3, 'POINT')}]]đ</td>
+									<td class="quantity">[[*{quantity}]]</td>
+									<td class="amount">[[${#numbers.formatDecimal(item.price * item.quantity, 0, 'COMMA', 3, 'POINT')}]]đ</td>
+								</tr>
+								<tr>
+									<td colspan="3" class="border-right">
+										<div class="box-customer-content">
+											<div class="title">
+												<span>Thông tin giao hàng</span>
+											</div>
+											<div>
+												[Anh/Chị]<b> [[*{account.fullname}]]</b>
+											</div>
+											<div>[[*{account.email}]] | [[*{account.address}]] |
+												[[*{account.phone}]]</div>
+										</div>
+										<div class="box-customer-content">
+											<div class="title">
+												<span>Thông tin thanh toán</span>
+											</div>
+											<div>
+												[Anh/Chị]<b> [[*{account.fullname}]]</b>
+											</div>
+											<div>[[*{account.email}]] | [[*{account.address}]] |
+												[[*{account.phone}]]</div>
+										</div>
+									</td>
+									<td colspan="4">
+										<table class="table">
+											<tbody>
+												<tr>
+													<td class="text-left"><b>Tổng tiền thanh toán</b></td>
+													<td class="text-right "><b class="total-payment">
+															[[${#numbers.formatDecimal(sum, 0, 'COMMA', 3, 'POINT')}]]đ </b>
+														<p class="note"></p></td>
+												</tr>
+												<tr class="text-center order-stt">
+													<td colspan="2">
+														<div>Trạng thái đơn hàng</div>
+														<div>
+															<b>đang giao</b>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="button text-right">
+						<a class="btn btn-default" th:href="@{/checkorder}" onclick="window.history.back()">Trở về danh sách đơn hàng</a> 
+						<a class="btn btn-default" th:href="@{/main}" onclick="window.history.back()">Tiếp tục mua hàng</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</main>
+</body>
+</html>
