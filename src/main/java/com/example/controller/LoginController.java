@@ -1,6 +1,5 @@
 package com.example.controller;
 
-
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
@@ -27,41 +26,39 @@ import com.example.entity.Account;
 import com.example.service.MailService;
 import com.example.service.MailerService;
 
-
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-  
-  @Autowired
+
+	@Autowired
 	AccountDAO dao;
 
 	@Autowired
 	MailerService mail;
 
-	
 	@GetMapping("/signin/form")
 	public String doGetForm() {
 		return "login/signin";
 	}
-	
+
 	@RequestMapping("/signin/success")
 	public String success(Model model) {
 		model.addAttribute("message1", "Đăng nhập thành công");
 		return "forward:/login/signin/form";
 	}
-	
+
 	@GetMapping("/signin/error")
 	public String error(Model model) {
 		model.addAttribute("message", "Sai thông tin đăng nhập");
 		return "forward:/login/signin/form";
 	}
-	
+
 	@RequestMapping("/logoff/success")
 	public String logoff(Model model) {
 		model.addAttribute("message1", "Đăng xuất thành công");
 		return "forward:/login/signin/form";
 	}
-	
+
 	@RequestMapping("/access/denied")
 	public String denied(Model model) {
 		model.addAttribute("message", "Bạn không có quyền truy cập!");
@@ -73,52 +70,59 @@ public class LoginController {
 		return "login/signup";
 
 	}
-	
+
 	@PostMapping("/formSignUp/create")
 	public String save(Model model, @Validated @ModelAttribute("account") Account acc,
-			@RequestParam("rePass") String rePass, BindingResult result, Errors errors, HttpSession session) { 
-		if(errors.hasErrors()) {
-			model.addAttribute("message", "Vui lòng sửa các lỗi sau:");			
-		}
-		else {
+			@RequestParam("email") String email, @RequestParam("rePass") String rePass, BindingResult result,
+			Errors errors, HttpSession session) {
+		Account accm = dao.findByEmail(email);
+		if (errors.hasErrors()) {
+			model.addAttribute("message", "Vui lòng sửa các lỗi sau:");
+		} else {
 			if (!dao.findById(acc.getUsername()).isEmpty()) {
 				model.addAttribute("message", "Vui lòng điền lại chính xác các thông tin sau:");
-				model.addAttribute("error_user", "Username đã tồn tại!");	
+				model.addAttribute("error_user", "Username đã tồn tại!");
 			} else {
-				if (acc.getPassword().equals(rePass) && !result.hasErrors()) {
-					if(acc.getPhone().length()>=9 && acc.getPhone().length()<=15 && !result.hasErrors()) {	
-					String otp = RandomStringUtils.randomNumeric(6);
-					acc.setOtp(otp);
-					try {
-						mail.send(acc.getEmail(), "Mã xác nhận Otp", "Không gửi mã xác nhận này cho bất kỳ ai: " + otp);
-					} catch (MessagingException e) {
-						e.printStackTrace();
-					}
-					dao.save(acc);
-					session.setAttribute("msg", "Đăng ký thành công");				
-					return "forward:/login/confirm";
+				if(!(accm != null)) {
+					if (acc.getPassword().equals(rePass) && !result.hasErrors()) {
+						if (acc.getPhone().length() >= 9 && acc.getPhone().length() <= 15 && !result.hasErrors()) {
+							String otp = RandomStringUtils.randomNumeric(6);
+							acc.setOtp(otp);
+							try {
+								mail.send(acc.getEmail(), "Mã xác nhận Otp",
+										"Không gửi mã xác nhận này cho bất kỳ ai: " + otp);
+							} catch (MessagingException e) {
+								e.printStackTrace();
+							}
+							dao.save(acc);
+							session.setAttribute("msg", "Đăng ký thành công");
+							return "forward:/login/confirm";
+						} else {
+							model.addAttribute("message", "Vui lòng điền lại chính xác các thông tin sau:");
+							model.addAttribute("error_phone", "Số điện thoại không hợp lệ!");
+						}
 					} else {
 						model.addAttribute("message", "Vui lòng điền lại chính xác các thông tin sau:");
-						model.addAttribute("error_phone", "Số điện thoại không hợp lệ!");						
+						model.addAttribute("error_repass", "Mật khẩu nhập lại không chính xác!");
 					}
 				} else {
 					model.addAttribute("message", "Vui lòng điền lại chính xác các thông tin sau:");
-					model.addAttribute("error_repass", "Mật khẩu nhập lại không chính xác!");													
+					model.addAttribute("error_email", "Email đã được đăng ký!");
 				}
 			}
-		}		
+		}
 		model.addAttribute("accounts", dao.findAll());
 		return "login/signup";
 	}
-	
+
 	@RequestMapping("/confirm")
 	public String xacnhan(@ModelAttribute("account") Account acc, Model model) {
 		model.addAttribute("email1", acc.getEmail());
 		return "login/xacnhan";
 	}
-	
+
 	@RequestMapping(value = "/xacnhanMail", method = RequestMethod.POST)
-	public String confirm(@RequestParam("otp") String otp ,@RequestParam("email") String email) {
+	public String confirm(@RequestParam("otp") String otp, @RequestParam("email") String email) {
 		Account acc = dao.findByEmail(email);
 		if (acc.getOtp().equals(otp)) {
 			acc.setOtp(null);
@@ -128,7 +132,7 @@ public class LoginController {
 		}
 		return "login/xacnhan";
 	}
-	
+
 	@RequestMapping("/success")
 	public String successSignIn(Model model) {
 		return "login/success";
@@ -173,12 +177,5 @@ public class LoginController {
 //		return "login/signup";
 //
 //	}
-	
-
-	
-	
-	
-
-	
 
 }
