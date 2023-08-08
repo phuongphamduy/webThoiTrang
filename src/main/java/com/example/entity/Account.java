@@ -48,8 +48,9 @@ public class Account implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date birthday;
 	String address;
-
 	String phone;
+	String otp;
+	Boolean active;
 	@JsonIgnore
 	@OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
 	List<Authority> authorities;

@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(username -> {
 			try {
-				Account user = accountService.findById(username);
+				Account user = accountService.FindByUsernameActivated(username);
 				
 				// Tạo UserDetails từ Account
 				String password = pe.encode(user.getPassword());

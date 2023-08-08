@@ -30,4 +30,9 @@ public class AccountServiceImpl implements AccountService{
 		return null;
 	}
 
+	@Override
+	public Account FindByUsernameActivated(String id) {
+		return dao.findByUsernameAndActive(id, true);
+	}
+
 }
