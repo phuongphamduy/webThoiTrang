@@ -48,5 +48,10 @@ public class OrderServiceImpl implements OrderService {
 	public Order findById(Integer id) {
 		return dao.findById(id).get();
 	}
+	
+	@Override
+	public List<Order> findByUsername(String username) {
+		return dao.findByUsername(username);
+	}
 
 }

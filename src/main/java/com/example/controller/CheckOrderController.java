@@ -7,8 +7,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CheckOrderController {
 	
-	@RequestMapping("/checkorder")
-	public String index(Model model) {
-		return "product/checkorder";
-	}
 }

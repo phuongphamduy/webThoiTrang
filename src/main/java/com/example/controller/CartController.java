@@ -49,4 +49,25 @@ public class CartController {
 		model.addAttribute("order", order);
 		return "cart/paySuccess";
 	}
+	
+	@RequestMapping("/checkorder")
+	public String index(Model model, HttpServletRequest request) {
+		String username = request.getRemoteUser();
+		model.addAttribute("orders", service.findByUsername(username));
+		return "product/checkorder";
+	}
+	
+	@RequestMapping("/orderdetail/{id}")
+	public String detail(@PathVariable("id") Integer id, Model model) {
+		Order order = service.findById(id);
+		List<OrderDetail> list = order.getOrderDetails();
+		double sum = 0;
+		for(OrderDetail d : list) {
+			sum+=d.getPrice() * d.getQuantity();
+		}
+		model.addAttribute("sum", sum);
+		model.addAttribute("list", list);
+		model.addAttribute("order", order);
+		return "product/order_detail";
+	}
 }

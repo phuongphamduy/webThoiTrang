@@ -82,7 +82,7 @@
                                     </div>
                                     <div class="success-button-group float-right mt-3">
                                         <a th:href="@{/main}" class="btn btn-primary">Tiếp tục mua hàng</a>
-                                        <button class="btn btn-primary">Đơn hàng của tôi</button>
+                                        <a th:href="@{|/orderdetail/${order.id}|}" class="btn btn-primary">Đơn hàng của tôi</a>
                                     </div>
                                 </div>
                             </div>
