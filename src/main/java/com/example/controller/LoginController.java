@@ -117,15 +117,20 @@ public class LoginController {
 	}
 	
 	@PostMapping("/xacnhanMail")
-	public String confirm(@RequestParam("email") String email, @RequestParam("otp") String otp) {
+	public String confirm(@RequestParam("otp") String otp ,@RequestParam("email") String email) {
 		Account acc = dao.findByEmail(email);
 		if (acc.getOtp().equals(otp)) {
 			acc.setOtp(null);
 			acc.setActive(true);
 			dao.save(acc);
-			return "login/success";
+			return "redirect:/login/success";
 		}
 		return "login/xacnhan";
+	}
+	
+	@RequestMapping("/success")
+	public String successSignIn(Model model) {
+		return "login/success";
 	}
 
 //	@PostMapping("/formSignUp")
