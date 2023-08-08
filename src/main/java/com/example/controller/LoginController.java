@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.dao.AccountDAO;
@@ -116,7 +117,7 @@ public class LoginController {
 		return "login/xacnhan";
 	}
 	
-	@PostMapping("/xacnhanMail")
+	@RequestMapping(value = "/xacnhanMail", method = RequestMethod.POST)
 	public String confirm(@RequestParam("otp") String otp ,@RequestParam("email") String email) {
 		Account acc = dao.findByEmail(email);
 		if (acc.getOtp().equals(otp)) {
