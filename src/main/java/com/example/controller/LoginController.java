@@ -112,12 +112,12 @@ public class LoginController {
 	
 	@RequestMapping("/confirm")
 	public String xacnhan(@ModelAttribute("account") Account acc, Model model) {
-		model.addAttribute("account", acc);
+		model.addAttribute("email1", acc.getEmail());
 		return "login/xacnhan";
 	}
 	
 	@PostMapping("/xacnhanMail")
-	public String confirm(@RequestParam("otp") String otp, @RequestParam("email") String email) {
+	public String confirm(@RequestParam("email") String email, @RequestParam("otp") String otp) {
 		Account acc = dao.findByEmail(email);
 		if (acc.getOtp().equals(otp)) {
 			acc.setOtp(null);
