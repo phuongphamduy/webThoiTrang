@@ -15,13 +15,14 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.example.entity.MailInfo;
-import com.example.service.MailService;
+import com.example.service.MailerService;
 
 @Service
-public class MailServiceImpl implements MailService{
+public class MailerServiceImpl implements MailerService {
+	
 	@Autowired
 	JavaMailSender sender;
-	List<MailInfo> list = new ArrayList<>();
+	List<MailInfo> list = new ArrayList();
 
 	@Override
 	public void send(MailInfo mail) throws MessagingException {
@@ -85,6 +86,5 @@ public class MailServiceImpl implements MailService{
 			}
 		}
 	}
-
+	
 }
-
