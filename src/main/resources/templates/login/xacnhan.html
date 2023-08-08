@@ -61,10 +61,10 @@
 									<h1 class="text-center"
 										style="text-transform: uppercase; color: #05c3ff; font-weight: 700;">Xác
 										nhận gmail</h1>
-									<form action="/xacnhanMail" method="post">
+									<form th:action="@{/xacnhanMail}" method="post" th:object="${account}">
 										<div class="form-group">
 											<label for="exampleInputPassword2">Email</label> <input
-												type="text" name="email" value="${email1 }"
+												type="text" name="email" th:value="*{email}"
 												class="form-control" id="exampleInputPassword2"
 												placeholder="Email" />
 										</div>

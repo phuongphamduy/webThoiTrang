@@ -1,8 +1,10 @@
 package com.example.controller;
 
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.dao.AccountDAO;
 import com.example.entity.Account;
+import com.example.service.MailService;
+import com.example.service.MailerService;
 
 
 @Controller
@@ -30,8 +34,8 @@ public class LoginController {
   @Autowired
 	AccountDAO dao;
 
-//	@Autowired
-//	MailService mail;
+	@Autowired
+	MailerService mail;
 
 	
 	@GetMapping("/signin/form")
@@ -81,10 +85,17 @@ public class LoginController {
 				model.addAttribute("error_user", "Username đã tồn tại!");	
 			} else {
 				if (acc.getPassword().equals(rePass) && !result.hasErrors()) {
-					if(acc.getPhone().length()>=9 && acc.getPhone().length()<=15 && !result.hasErrors()) {											
+					if(acc.getPhone().length()>=9 && acc.getPhone().length()<=15 && !result.hasErrors()) {	
+					String otp = RandomStringUtils.randomNumeric(6);
+					acc.setOtp(otp);
+					try {
+						mail.send(acc.getEmail(), "Mã xác nhận Otp", "Không gửi mã xác nhận này cho bất kỳ ai: " + otp);
+					} catch (MessagingException e) {
+						e.printStackTrace();
+					}
 					dao.save(acc);
 					session.setAttribute("msg", "Đăng ký thành công");				
-					return "login/success";
+					return "forward:/login/confirm";
 					} else {
 						model.addAttribute("message", "Vui lòng điền lại chính xác các thông tin sau:");
 						model.addAttribute("error_phone", "Số điện thoại không hợp lệ!");						
@@ -97,6 +108,24 @@ public class LoginController {
 		}		
 		model.addAttribute("accounts", dao.findAll());
 		return "login/signup";
+	}
+	
+	@RequestMapping("/confirm")
+	public String xacnhan(@ModelAttribute("account") Account acc, Model model) {
+		model.addAttribute("account", acc);
+		return "login/xacnhan";
+	}
+	
+	@PostMapping("/xacnhanMail")
+	public String confirm(@RequestParam("otp") String otp, @RequestParam("email") String email) {
+		Account acc = dao.findByEmail(email);
+		if (acc.getOtp().equals(otp)) {
+			acc.setOtp(null);
+			acc.setActive(true);
+			dao.save(acc);
+			return "login/success";
+		}
+		return "login/xacnhan";
 	}
 
 //	@PostMapping("/formSignUp")
@@ -138,24 +167,9 @@ public class LoginController {
 //		return "login/signup";
 //
 //	}
-//
-//	@RequestMapping("/confirm")
-//	public String xacnhan(@ModelAttribute("account") Account acc, Model model) {
-//		model.addAttribute("email1", acc.getEmail());
-//		return "login/xacnhan";
-//	}
-//
-//	@PostMapping("/xacnhanMail")
-//	public String confirm(@RequestParam("otp") String otp, @RequestParam("email") String email) {
-//		Account acc = dao.findByEmail(email);
-//		if (acc.getOtp().equals(otp)) {
-//			acc.setOtp(null);
-//			acc.setActivated(true);
-//			dao.save(acc);
-//			return "redirect:/form/in";
-//		}
-//		return "login/xacnhan";
-//	}
+	
+
+	
 	
 	
 

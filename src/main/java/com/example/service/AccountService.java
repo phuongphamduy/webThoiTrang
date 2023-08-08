@@ -11,4 +11,6 @@ public interface AccountService {
 
 	Account findById(String id);
 	
+	Account FindByUsernameActivated(String id);
+	
 }
