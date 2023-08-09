@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,6 +26,9 @@ public class CartController {
 
 	@Autowired
 	OrderService service;
+	
+	@Autowired
+	HttpSession session;
 
 	@RequestMapping("/cart")
 	public String cart(Model model) {
@@ -47,6 +51,7 @@ public class CartController {
 		model.addAttribute("sum", sum);
 		model.addAttribute("list", list);
 		model.addAttribute("order", order);
-		return "cart/paySuccess";
+		session.setAttribute("order", order);
+		return "redirect:/orders/mono-pay";
 	}
 }
