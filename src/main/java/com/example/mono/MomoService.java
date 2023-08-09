@@ -1,4 +1,4 @@
-package com.master.minieshop.payment.momo;
+package com.example.mono;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;

@@ -1,4 +1,4 @@
-package com.master.minieshop.payment.momo;
+package com.example.mono;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

@@ -1,4 +1,4 @@
-package com.master.minieshop.payment.momo;
+package com.example.mono;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -25,13 +25,15 @@ public class MomoController {
 	@Autowired
     private MomoService momoService;
 	
-	@GetMapping("momo-pay")
+	@GetMapping("/momo-pay")
     public ResponseEntity<Void> momoPay(HttpSession session) 
     		throws NoSuchAlgorithmException, InvalidKeyException, JsonProcessingException {
 
         Order sessionOrder = (Order) session.getAttribute("order");
 
         MomoResponse response = momoService.createMomoPayment(sessionOrder);
+        
+        System.out.println(response.getPayUrl());
 
         return ResponseEntity.status(HttpStatus.FOUND)
                 .header("Location", response.getPayUrl())
