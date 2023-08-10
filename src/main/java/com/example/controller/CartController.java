@@ -51,7 +51,6 @@ public class CartController {
 		model.addAttribute("sum", sum);
 		model.addAttribute("list", list);
 		model.addAttribute("order", order);
-		session.setAttribute("order", order);
-		return "redirect:/orders/momo-pay";
+		return "cart/paySuccess";
 	}
 }

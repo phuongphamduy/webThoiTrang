@@ -2,6 +2,7 @@ package com.example.mono;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,11 +12,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.entity.MomoResult;
 import com.example.entity.Order;
+import com.example.entity.OrderDetail;
+import com.example.service.OrderService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 @Controller
@@ -25,11 +29,13 @@ public class MomoController {
 	@Autowired
     private MomoService momoService;
 	
-	@GetMapping("/momo-pay")
-    public ResponseEntity<Void> momoPay(HttpSession session) 
+	@Autowired
+	OrderService service;
+	
+	@GetMapping("/momo-pay/{id}")
+    public ResponseEntity<Void> momoPay(HttpSession session, @PathVariable("id") Integer id) 
     		throws NoSuchAlgorithmException, InvalidKeyException, JsonProcessingException {
-
-        Order sessionOrder = (Order) session.getAttribute("order");
+        Order sessionOrder = service.findById(id);
 
         MomoResponse response = momoService.createMomoPayment(sessionOrder);
         
@@ -90,7 +96,16 @@ public class MomoController {
 //        orderService.removeSessionOrder(session);
 
         model.addAttribute("momoResult", result);
-
+        Order order = service.findById(Integer.parseInt(result.getOrderId()));
+        model.addAttribute("order", order);
+        model.addAttribute("list", order.getOrderDetails());
+		List<OrderDetail> list = order.getOrderDetails();
+		double sum = 0;
+		for(OrderDetail d : list) {
+			sum+=d.getPrice() * d.getQuantity();
+		}
+		model.addAttribute("sum", sum);
+		session.removeAttribute("order");
         return "cart/paySuccess";
     }
 }
