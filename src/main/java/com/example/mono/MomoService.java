@@ -41,7 +41,7 @@ public class MomoService {
         String redirectUrl = "http://localhost:8080/orders/momo-result";
         
         String orderInfo = "Khách hàng: " + service.findById(order.getId()).getAccount().getFullname() + " thanh toán";
-        String amount = String.valueOf(Math.round(service.findById(order.getId()).getOrderDetails().stream().map(x -> x.getPrice() * x.getQuantity()).reduce(0.0, (a, b) -> a + b))).replaceAll("[^\\d]", ""); // Xóa dấu phẩy
+        String amount = String.valueOf(Math.round(service.findById(order.getId()).getOrderDetails().stream().map(x -> x.getPrice() * x.getQuantity()).reduce(0.0, (a, b) -> a + b)) * 1000); // Xóa dấu phẩy
         String orderId = order.getId().toString();
         String requestId = java.util.UUID.randomUUID().toString();
         String extraData = "";

@@ -81,7 +81,7 @@ app.controller("cartCtrl", function($scope, $http) {
             return $scope.cart.items.map(item => {
                 return {
                     product: {id: item.id},
-                    price: item.price * item.discount,
+                    price: item.price - (item.price * item.discount / 100),
                     quantity: item.qty
                 }
             })
