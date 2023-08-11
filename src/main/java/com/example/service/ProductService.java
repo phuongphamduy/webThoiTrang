@@ -9,12 +9,20 @@ import com.example.entity.Product;
 
 public interface ProductService {
 
-	List<Product> getProduct();
+	List<Product> getProducts();
 
 	Product findById(Long id);
 
-	Page<Product> getProductPage(Pageable pageable);
 	Product create(Product product);
+
+	Product update(Product product);
+
+	void delete(Long id);
+	
+	Page<Product> getProductPage(Pageable pageable);
+
+	List<Product> getProduct();
+
 	
 
 	

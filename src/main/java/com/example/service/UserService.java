@@ -2,12 +2,16 @@ package com.example.service;
 
 import java.util.stream.Collectors;
 
+import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.AccountDAO;
@@ -37,6 +41,7 @@ public class UserService implements UserDetailsService{
 		} catch (Exception e) {
 			throw new UsernameNotFoundException(username + "not found!");
 		}
+		
 	}
 	
 }
