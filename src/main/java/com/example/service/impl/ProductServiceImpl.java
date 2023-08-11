@@ -21,11 +21,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product findById(Long id) {
-		return dao.findById(id).get();
-	}
-
-	@Override
 	public Page<Product> getProductPage(Pageable pageable) {
 		return dao.findAll(pageable);
 	}
@@ -33,6 +28,29 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product create(Product product) {
 		return dao.save(product);
+	}
+	
+	@Override
+	public Product findById(Long id) {
+		return dao.findById(id).get();
+	}
+
+
+	@Override
+	public Product update(Product product) {
+		return dao.save(product);
+	}
+
+	@Override
+	public void delete(Long id) {
+		dao.deleteById(id);
+		;
+	}
+
+	@Override
+	public List<Product> getProducts() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

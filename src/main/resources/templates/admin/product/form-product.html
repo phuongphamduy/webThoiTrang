@@ -4,29 +4,19 @@
 <head>
     <meta charset="ISO-8859-1" />
     <title>Insert title here</title>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/angular.min.js"></script>
-    <script src="/js/angular-route.min.js"></script>
-    <script src="/js/slick.min.js"></script>
-    <script src="https://kit.fontawesome.com/5a854a2686.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-    <script
-        src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
-
 </head>
 
-<body th:fragment="product" ng-app="myProduct" ng-controller="myCtrl">
+<body>
 
-    <main>
+    <main ng-app="myProduct" ng-controller="myCtrl">
 
         <div style="margin-left: 15%; padding: 10px">
             <span style="font-size: 40px">Form Sản phẩm</span>
 
-            <c:if test="${not empty success_product}">
+            <!-- <c:if test="${not empty success_product}">
                 <div class="alert alert-success" role="alert">
                     ${success_product}</div>
-            </c:if>
+            </c:if> -->
 
 
             <div class="card">
@@ -36,37 +26,38 @@
                 <div class="card-body">
                     <div class="row g-3">
                         <!-- <form:input path="id" type="hidden" /> -->
-                        <div class="col-md-6">
-                            <label for="name" class="form-label"><b>Tên sản phẩm</b></label>
-                            <input ng-model="form.name" type="text" class="form-control" path="name" />
-                        </div>
-                        <div class="col-md-6">
-                            <label for="discount" class="form-label"><b>Giảm giá</b></label>
-                            <input ng-model="form.discount" type="text" class="form-control" path="discount" />
-                        </div>
-                        <div class="col-md-6">
-                            <label for="price" class="form-label"><b>Giá sản phẩm</b></label>
-                            <input ng-model="form.price" type="number" class="form-control" path="price" />
-                        </div>
-                        <div class="col-md-6">
-                            <label for="category" class="form-label"><b>Loại</b></label>
-                            <!-- <form:select path="category" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${listCategory}" var="f">
-                                        <form:option value="${f}">${f}</form:option>
-                                    </c:forEach>
-                                </form:select> -->
-                            <!-- <c:if test="${not empty error_product}">
-                                    <div class="form-text text-danger">${error_product}</div>
-                                </c:if> -->
-                            <div class="custom-select" style="width:200px;">
-                                <select ng-repeat="sp in product" th:object="${sp}">
-                                    <option>[{{email}}]</option>
+
+                        <div class="col-md-8 row pt-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label"><b>Tên sản phẩm</b></label>
+                                <input ng-model="form.name" type="text" class="form-control" path="name" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="discount" class="form-label"><b>Giảm giá</b></label>
+                                <input ng-model="form.discount" type="text" class="form-control" path="discount" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="price" class="form-label"><b>Giá sản phẩm</b></label>
+                                <input ng-model="form.price" type="number" class="form-control" path="price" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="category" class="form-label" style="width: 100%;"><b>Loại</b></label>
+                                <select ng-model="form.category.id" style="width:200px; height: 35px;">
+                                    <option ng-repeat="sp in category" ng-value="sp.id">{{sp.name}}
+                                    </option>
                                 </select>
                             </div>
+                            <div class="col-md-12">
+                                <label for="image" class="form-label"><b>Chọn hình</b>
+                                    <input ng-model="form.image" type="file" class="form-control" name="img"
+                                        onchange="angular.element(this).scope().imageChanged(this.files)" />
+                                </label>
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                            <label for="image" class="form-label"><b>Chọn hình</b></label>
-                            <input ng-model="form.image" type="file" class="form-control" name="img" />
+                        <div class="col-md-4 pt-3">
+                            <label for="image" style="margin-top: 20px;">
+                                <img ng-src="{{'/images/product/'+form.image}}" alt="Image" width="100%"
+                                    height="200px" /></label>
                         </div>
 
                         <!-- <div class="col-md-6">
@@ -78,10 +69,13 @@
                                 </c:if>
                             </div> -->
                         <div class="col-12" style="padding: 10px;">
-                            <button ng-click="create()" type="submit" class="btn btn-primary">Thêm</button>
-                            <button formaction="/admin/product/update" type="submit"
-                                class="btn btn-warning">Sửa</button>
-                            <button formaction="/admin/product/formproduct" type="submit" class="btn btn-danger">Làm
+                            <button ng-click="create()" class="btn btn-primary">Thêm</button>
+                            <button ng-click="update()" class="btn btn-warning">Sửa</button>
+                            <button ng-click="loadDeleteForm()" type="button" class="btn btn-primary"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Xóa
+                            </button>
+                            <button ng-click="reset()" class="btn btn-danger">Làm
                                 mới</button>
                         </div>
                     </div>
@@ -90,15 +84,17 @@
             </div>
         </div>
 
-
         <div style="margin-left: 15%; padding: 10px">
+            <!--  -->
+
+
+
             <span style="font-size: 40px">Danh sách sản phẩm</span>
 
             <div class="card">
                 <div class="card-header">Bảng danh sách</div>
                 <div class="card-body">
-                    <!-- search -->
-                    <jsp:include page="/views/Admin/Layout/search.jsp"></jsp:include>
+                    
                     <table class="table table-light">
                         <thead style="font-size: 1.2rem; font-weight: 500; text-align: center">
                             <td><b>Tên sản phẩm</b></td>
@@ -110,26 +106,26 @@
                             <td><b>Action</b></td>
                         </thead>
                         <tbody style="text-align: center">
-                            <!-- <c:forEach items="${productItems}" var="sp"> -->
-                            <tr class="table" th:each="sp : ${products}" th:object="${sp}">
+                           
+                            <tr class="table" ng-repeat="sp in products">
 
-                                <td>[[*{name}]]</td>
+                                <td>{{sp.name}}</td>
                                 <td>
-                                    <fmt:formatNumber pattern="#,##0" value="${sp.price }" />[[*{price}]] VNĐ
+                                    <fmt:formatNumber pattern="#,##0" value="${sp.price }" />{{sp.price}} VNĐ
                                 </td>
-                                <td>-[[*{discount}]]%</td>
-                                <td>[[*{category.name}]]</td>
-                                <td><img th:src="@{|/images/product/*{image}|}" height="70px" width="70px"
+                                <td>{{sp.discount}}</td>
+                                <td>{{sp.category.name}}</td>
+                                <td><img src="/images/product/{{sp.image}}" height="70px" width="70px"
                                         style="object-fit: cover;" alt=""></td>
                                 <!-- <td>
                                     <fmt:formatDate value="${sp.createdate}" pattern="dd-MM-yyyy" />
                                 </td> -->
                                 <td>
-                                    <a href="/admin/product/edit?id=${sp.id}" class="btn btn-warning">Edit</a>
-                                    <a href="/admin/product/delete?id=${sp.id}" class="btn btn-danger">Xóa</a>
+                                    <button ng-click="edit(sp)" class="btn btn-primary">Edit</button>
+
                                 </td>
                             </tr>
-                            <!-- </c:forEach> -->
+                        
 
 
                         </tbody>
@@ -138,8 +134,44 @@
             </div>
         </div>
 
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc chắn muốn xóa sản phẩm này không?
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body container row">
+                        <div class="col-sm-4"
+                            style="display: flex; align-items: center; justify-content: center; border-right: 1px solid #3333;">
+
+                            <img ng-src="{{'/images/product/' + form.image}}" height="100px" width="100px" />
+                        </div>
+                        <div class="col-sm-8 row" style="margin-left: 10px;">
+                            <label style="font-size: 1.2rem;">Tên: </label>
+                            <input ng-value="form.name" type="text" disabled />
+                            <label style="font-size: 1.2rem;">Giá: </label>
+                            <input ng-value="form.price" type="text" disabled />
+                            <label style="font-size: 1.2rem;">Giảm giá: </label>
+                            <input ng-value="form.discount" type="text" disabled />
+                            <label style="font-size: 1.2rem;">Loại: </label>
+                            <input ng-value="form.category.name" type="text" disabled />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button ng-click="delete(form.id)" data-bs-dismiss="modal" type="button"
+                            class="btn btn-primary">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <script src="/js/Myjs/AdminJS/productAdmin.js"></script>
     </main>
-    <script src="../../../static/js/Myjs/AdminJS/productAdmin.js"></script>
 </body>
 
 </html>
