@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="menu-account">
+                        <h3>
+                            <span> Tài khoản </span>
+                        </h3>
+                        <ul>
+                            <li><a th:href="@{/login/signin/form}"><i class="fa fa-sign-in"></i>Đăng
+                                    nhập</a></li>
+                            <li><a th:href="@{/login/formSignUp}"><i class="fa fa-key"></i>Đăng
+                                    ký</a></li>
+                            <li><a th:href="@{/loadForgotPassword}"><i class="fa fa-key"></i>Quên mật khẩu</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="register-content clearfix ng-scope" ng-controller="accountController"
+                        ng-init="initRegisterController()">
+                        <h1 class="title">
+                            <span>Thay đổi thông tin</span>
+                        </h1>
+                        <div class="col-md-8 col-md-offset-2 col-xs-12 col-sm-12 col-xs-offset-0 col-sm-offset-0">
+                            <div class="card">
+                                <div class="card-header text-center fs-4">Thông tin</div>
+                                <div class="card-body">
+                                    <form action="/" method="post">
+                                        <div class="mb-3">
+                                            <label>Tên tài khoản</label> <input name="email" type="text"
+                                                class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
+                                                ng-model="Email" required="true"  />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Họ và tên</label> <input name="email" type="text"
+                                                class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
+                                                ng-model="Email" required="true"  />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Giới tính</label> <input name="email" type="text"
+                                                class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
+                                                ng-model="Email" required="true"  />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Địa chỉ</label> <input name="email" type="text"
+                                                class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
+                                                ng-model="Email" required="true"  />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Số điện thoại</label> <input name="email" type="text"
+                                                class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
+                                                ng-model="Email" required="true"  />
+                                        </div>
+                                        <button class="btn btn-primary col-md-12">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
