@@ -36,29 +36,24 @@
                             <div class="card">
                                 <div class="card-header text-center fs-4">Thông tin</div>
                                 <div class="card-body">
-                                    <form action="/" method="post">
+                                    <form action="/user/change" method="post">
                                         <div class="mb-3">
-                                            <label>Tên tài khoản</label> <input name="email" type="text"
+                                            <label>Tên tài khoản</label> <input name="taikhoan" type="text" th:value="${acc.username}" readonly
                                                 class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
                                                 ng-model="Email" required="true"  />
                                         </div>
                                         <div class="mb-3">
-                                            <label>Họ và tên</label> <input name="email" type="text"
+                                            <label>Họ và tên</label> <input name="fullname" type="text" th:value="${acc.fullname}"
                                                 class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
                                                 ng-model="Email" required="true"  />
                                         </div>
                                         <div class="mb-3">
-                                            <label>Giới tính</label> <input name="email" type="text"
+                                            <label>Địa chỉ</label> <input name="address" type="text" th:value="${acc.address}"
                                                 class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
                                                 ng-model="Email" required="true"  />
                                         </div>
                                         <div class="mb-3">
-                                            <label>Địa chỉ</label> <input name="email" type="text"
-                                                class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
-                                                ng-model="Email" required="true"  />
-                                        </div>
-                                        <div class="mb-3">
-                                            <label>Số điện thoại</label> <input name="email" type="text"
+                                            <label>Số điện thoại</label> <input name="phone" type="text" th:value="${acc.phone}"
                                                 class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
                                                 ng-model="Email" required="true"  />
                                         </div>

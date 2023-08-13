@@ -25,14 +25,13 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public Account findById(String id, String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public Account FindByUsernameActivated(String id) {
+		return dao.findByUsernameAndActive(id, true);
 	}
 
 	@Override
-	public Account FindByUsernameActivated(String id) {
-		return dao.findByUsernameAndActive(id, true);
+	public Account update(Account account) {
+		return dao.save(account);
 	}
 
 }
