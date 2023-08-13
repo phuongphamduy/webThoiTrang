@@ -2,7 +2,7 @@ var app = angular.module("myProduct", []);
 const host = "http://localhost:8080";
 
 app.controller("myCtrl", ($scope, $http) => {
-  $scope.product = [];
+  $scope.products = [];
   $scope.category = [];
   $scope.form = {};
 
@@ -22,7 +22,7 @@ app.controller("myCtrl", ($scope, $http) => {
       });
 
     $http.get(`${host}/rest/products`).then((res) => {
-      $scope.product = res.data;
+      $scope.products = res.data;
       console.log(res);
     });
   };
@@ -32,17 +32,19 @@ app.controller("myCtrl", ($scope, $http) => {
     console.log(item);
   };
 
-  $scope.create = () => {
+ $scope.create = () => {
+	const url = `${host}/rest/products`;
     var item = angular.copy($scope.form);
+    
     $http
-      .post(`${host}/rest/products`, item)
+      .post(url, item)
       .then((res) => {
-        $scope.product.push(res.data);
+        $scope.products.push(res.data);
         $scope.reset();
         alert("Them moi thanh cong");
       })
       .catch((err) => {
-        console.log("error", err);
+        console.log("error", err.data.error);
       });
   };
   //upload
@@ -50,7 +52,7 @@ app.controller("myCtrl", ($scope, $http) => {
     var data = new FormData();
     data.append("file", files[0]);
     $http
-      .post("/rest/upload/product", data, {
+      .post("/rest/upload/products", data, {
         transformRequest: angular.identity,
         headers: { "Content-Type": undefined },
       })
@@ -69,8 +71,8 @@ app.controller("myCtrl", ($scope, $http) => {
     $http
       .put(`/rest/products/${item.id}`, item)
       .then((res) => {
-        var index = $scope.product.findIndex((p) => p.id == item.id);
-        $scope.product[index] = item;
+        var index = $scope.products.findIndex((p) => p.id == item.id);
+        $scope.products[index] = item;
         $scope.reset();
         alert("update thành công");
       })
@@ -86,8 +88,8 @@ app.controller("myCtrl", ($scope, $http) => {
     $http
       .delete(`/rest/products/${item.id}`)
       .then((res) => {
-        var index = $scope.product.findIndex((p) => p.id == item.id);
-        $scope.product.splice(index, 1);
+        var index = $scope.products.findIndex((p) => p.id == item.id);
+        $scope.products.splice(index, 1);
         $scope.reset();
         alert("Delete thành công");
       })

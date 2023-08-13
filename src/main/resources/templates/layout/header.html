@@ -32,7 +32,7 @@
 							th:href="@{/admin/main}"> <i class="fa-solid fa-user-gear"></i>
 								Administration
 							</a></li>
-							<li  class="nav-item"><a class="nav-link text-light"
+							<li  class="nav-item"><a th:href="@{/user/form}" class="nav-link text-light"
 							> <i class="fa-solid fa-circle-user"></i>
 								Welcome [[${#request.remoteUser}]]
 							</a></li>

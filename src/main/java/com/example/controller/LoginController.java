@@ -5,6 +5,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -25,6 +27,7 @@ import com.example.dao.AccountDAO;
 import com.example.entity.Account;
 import com.example.service.MailService;
 import com.example.service.MailerService;
+import com.example.service.UserService;
 
 @Controller
 @RequestMapping("/login")
@@ -135,9 +138,15 @@ public class LoginController {
 
 	@RequestMapping("/success")
 	public String successSignIn(Model model) {
-		return "login/success";
+		return "login/success"; 
 	}
 
+//	@RequestMapping("/oauth2/login/success")
+//	public String success(OAuth2AuthenticationToken oauth2) {
+//		UserService.loginFromOAuth2(oauth2);
+//		return "forward:/auth/login/success";
+//	}
+	
 //	@PostMapping("/formSignUp")
 //	public String doSignUp(@Validated @ModelAttribute("account") Account acc, BindingResult result,
 //			@RequestParam("rePass") String rePass, Model model, Errors errors) {
