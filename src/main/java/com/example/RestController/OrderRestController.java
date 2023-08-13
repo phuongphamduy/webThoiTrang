@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.entity.Order;
+import com.example.entity.OrderDetail;
 import com.example.service.OrderService;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -33,9 +34,8 @@ public class OrderRestController {
 		return service.create(orderData);
 	}
 	
-	@PutMapping("{id}")
-	public Order update(@PathVariable("id") Long id, @RequestBody Order order) {
-		order.setNote("Đã thanh toán");
-		return service.update(order);
+	@GetMapping("{id}")
+	public List<OrderDetail> od(@PathVariable("id") Integer id, @RequestBody OrderDetail od ) {
+		return service.findAllOD();
 	}
 }

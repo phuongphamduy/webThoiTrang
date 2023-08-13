@@ -16,7 +16,17 @@ angular.module("myapp", []).controller("order-ctrl", function($scope, $http){
     
     
       $scope.edit = (item) => {
-        $scope.form = angular.copy(item);
+		 var item = angular.copy($scope.form);
+        $http.get(`http://localhost:8080/rest/orders/${item.id}`, item)
+        .then(resp => {
+            var index = $scope.items.findIndex(p => p.id == item.id);
+            $scope.items[index] = item;
+            alert("Cập nhật thành công");
+        })
+        .catch(error => {
+            alert("Lỗi cập nhật sản phẩm")
+        })      
+        
     }
 
 	$scope.update = () => {
@@ -32,9 +42,6 @@ angular.module("myapp", []).controller("order-ctrl", function($scope, $http){
         })       
     }
     
-    function change(){
-		alert("Hi");
-	}
     
 	
 

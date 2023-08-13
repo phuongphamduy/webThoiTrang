@@ -22,13 +22,14 @@ public class OrderDetailRestController {
 	@Autowired
 	OrderService os;
 	
-//	@GetMapping("{orderid}")
-//	public List<OrderDetail> findAllByOrderId(@PathVariable("orderid") Integer orderid){
-//		return os.findByOrderId(orderid);
-//	}
 	
 	@GetMapping()
 	public List<OrderDetail> findAllOD(){
+		return os.findAllOD();
+	}
+	
+	@GetMapping("{id}")
+	public List<OrderDetail> od(@PathVariable("id") Integer id, @RequestBody OrderDetail od ) {
 		return os.findAllOD();
 	}
 	
