@@ -15,7 +15,7 @@ angular.module("myapp", []).controller("order-ctrl", function($scope, $http){
     $scope.initialize();
     
     
-      $scope.edit = (item) => {
+    $scope.edit = (item) => {
         $scope.form = angular.copy(item);
     }
 
