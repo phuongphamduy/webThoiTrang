@@ -33,12 +33,14 @@ app.controller("cartCtrl", function ($scope, $http) {
             if (item) {
                 item.qty += $scope.qty;
                 this.saveToLocalStore();
+                location.href="/cart";
             } else {
                 $http.get(`/rest/products/${id}`)
                     .then(resp => {
                         resp.data.qty = $scope.qty;
                         this.items.push(resp.data);
                         this.saveToLocalStore();
+                        location.href="/cart";
                     })
                     .catch(error => {
                         console.log(error);
