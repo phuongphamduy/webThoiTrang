@@ -11,4 +11,5 @@ public interface OrderDAO extends JpaRepository<Order, Integer>{
 	
 	@Query("select o from Order o where o.account.username = ?1")
 	List<Order> findByUsername(String username);
+
 }

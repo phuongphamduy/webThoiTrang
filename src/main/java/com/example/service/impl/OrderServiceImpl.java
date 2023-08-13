@@ -54,4 +54,28 @@ public class OrderServiceImpl implements OrderService {
 		return dao.findByUsername(username);
 	}
 
+	@Override
+	public List<Order> findAll() {		
+		return dao.findAll();
+	}
+
+	@Override
+	public List<OrderDetail> findAllOD() {	
+		return ddao.findAll();
+	}
+
+	@Override
+	public Order update(Order order) {
+		
+		return dao.save(order);
+	}
+
+//	@Override
+//	public List<OrderDetail> findByOrderId(Integer orderid) {		
+//		return ddao.findAll();
+//	}
+
+
+
+
 }
