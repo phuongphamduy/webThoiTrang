@@ -8,13 +8,14 @@
 </head>
 
 <body>
-    <main>
+    <main ng-app="myapp" ng-controller="order-ctrl">
 
         <div style="margin-left: 15%; padding: 10px">
             <span style="font-size: 40px">Danh sách đơn hàng đang chờ</span>
 
             <div class="card">
                 <div class="card-header">Bảng danh sách</div>
+                <input type="hidden" ng-model="form.id">
                 <div class="card-body">
                     <!-- search -->
                     <jsp:include page="/views/Admin/Layout/search.jsp"></jsp:include>
@@ -31,39 +32,38 @@
                             <td><b>Đã thanh toán</b></td>
                             <td><b>Chi tiết</b></td>
                         </thead>
-                        <tbody>
-                            <c:forEach items="${OrderItems}" var="o">
-                                <tr class="table-active">
-                                    <td>${o.id}</td>
-                                    <td>${o.account.username}</td>
+                        <tbody>   
+                                <tr class="table-active" ng-repeat="o in items">
+                                    <td>{{o.id}}</td>
+                                    <td>{{o.account.username}}</td>
                                     <td>
-                                        <fmt:formatDate value="${o.createdate}" pattern="dd-MM-yyyy" />
+                                        <input disabled value="{{o.createdate}}" pattern="dd-MM-yyyy" />
                                     </td>
-                                    <td>${o.address}</td>
-                                    <td>${o.phone}</td>
-                                    <td>${o.fullname}</td>
-                                    <td>${o.email}</td>
+                                    <td>{{o.address}}</td>
+                                    <td>{{o.phone}}</td>
+                                    <td>{{o.account.fullname}}</td>
+                                    <td>{{o.account.email}}</td>
                                     <td>
-                                        <fmt:formatNumber pattern="#,##0" value="${o.price }" /> VNĐ
+                                        <input disabled pattern="#,##0" value="{{o.orderDetails.price}}" /> VNĐ
                                     </td>
                                     <td>
-                                        <form class="text-center" action="/admin/order/update?id=${o.id }"
-                                            method="post">
+                                        <form class="text-center" method="post">
                                             <input name="isStatus" value="${!o.status }" type="checkbox" ${o.status
-                                                ? 'checked' : '' } onChange="this.form.submit()">
+                                                ? 'checked' : '' } formaction="/admin/form/order" ng-click="edit(o)" onchange="change()" disabled checked>
                                         </form>
                                     </td>
                                     <td>
                                         <!-- <a href="/admin/order/detail?id=${o.id }" class="btn btn-primary">Chi tiết</a> -->
-                                        <a href="/admin/order/detail" class="btn btn-primary">Chi tiết</a>
+                                        <a href="/admin/order/detail" ng-click="edit(o)" class="btn btn-primary">Chi tiết</a>
                                     </td>
                                 </tr>
-                            </c:forEach>
-                        </tbody>
+							
+						</tbody>
                     </table>
                 </div>
             </div>
         </div>
+         <script src="/js/Myjs/AdminJS/OrderAdmin.js"></script>
     </main>
 </body>
 
