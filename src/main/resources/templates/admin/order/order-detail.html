@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <main ng-app="myapp" ng-controller="orderDetails-ctrl">
+    <main ng-app="myapp" ng-controller="order-ctrl">
         <div style="margin-left: 15%; padding: 10px">
             <span style="font-size: 40px">Danh sách đơn hàng đang chờ</span>
             <div class="card">
@@ -26,30 +26,33 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr style="text-align: center">
-                                <th>STT</th>
-                                <th>Giá</th>
+                                <th>ID đơn hàng</th>
+                                <th>Sản phẩm</th>
+                                <th>Hình ảnh</th>
                                 <th>Số lượng</th>
-                                <th>ID đơn đặt hàng</th>
-                                <th>Id sản phẩm</th>
+                                <th>Giá</th>
                             </tr>
                         </thead>
-                        <tbody>                    
-                                <tr ng-repeat="od in items">
-                                    <td>{{od.id}}</td>
-                                    <td>{{od.price}} VND</td>
-                                    <td>{{od.quantity}}</td>
-                                    <td style="max-width: 50px; min-width: 30px">{{od.order.orderid}}</td>
-                                    <td style="max-width: 100px">{{od.product.productid}}</td>
-                                </tr>
-                           
+                        <tbody>
+                            <tr th:each="item : ${list}" th:object="${item}">
+                                <td>[[*{order.id}]]</td>
+                                <td>[[*{product.name}]]</td>
+                                <td><img th:src="@{|/images/product/*{product.image}|}" height="70px" width="70px"
+                                        style="object-fit: cover;" alt=""></td>
+                                <td>[[*{quantity}]]</td>
+                                <td>
+                                    [[${#numbers.formatDecimal(item.price, 0, 'COMMA', 3, 'POINT')}]]VNĐ
+                                </td>
+                            </tr>
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <script src="/js/Myjs/AdminJS/OrderDetailAdmin.js"></script>
+        <script src="/js/Myjs/AdminJS/OrderAdmin.js"></script>
     </main>
-     
+
 </body>
 
 </html>
