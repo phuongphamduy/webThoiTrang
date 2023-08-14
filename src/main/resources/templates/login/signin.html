@@ -1,36 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
 
-    <body>
-        <main>
-            <div class="container mt-3">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="menu-account">
-                            <h3>
-                                <span> Tài khoản </span>
-                            </h3>
-                            <ul>
-                                <li>
-                                    <a th:href="@{/login/signin/form}"><i class="fa fa-sign-in"></i>Đăng nhập</a>
-                                </li>
-                                <li>
-                                    <a th:href="@{/login/formSignUp}"><i class="fa fa-key"></i>Đăng ký</a>
-                                </li>
-                                <li>
-                                    <a th:href="@{/loadForgotPassword}"><i class="fa fa-key"></i>Quên mật khẩu</a>
-                                </li>
-                                
-                            </ul>
-                        </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  	<script src="https://apis.google.com/js/api:client.js"></script>
+    
+   <style type="text/css">
+    #customBtn {
+      display: inline-block;
+      background: white;
+      color: #444;
+      width: 190px;
+      border-radius: 5px;
+      border: thin solid #888;
+      box-shadow: 1px 1px 1px grey;
+      white-space: nowrap;
+    }
+    #customBtn:hover {
+      cursor: pointer;
+    }
+    span.label {
+      font-family: serif;
+      font-weight: normal;
+    }
+    span.buttonText {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 42px;
+      padding-right: 42px;
+      font-size: 14px;
+      font-weight: bold;
+      /* Use the Roboto font that is loaded in the <head> */
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="menu-account">
+                        <h3>
+                            <span> Tài khoản </span>
+                        </h3>
+                        <ul>
+                            <li>
+                                <a th:href="@{/login/signin/form}"><i class="fa fa-sign-in"></i>Đăng nhập</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/login/formSignUp}"><i class="fa fa-key"></i>Đăng ký</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/loadForgotPassword}"><i class="fa fa-key"></i>Quên mật khẩu</a>
+                            </li>
+
+                        </ul>
                     </div>
-                    <div class="col-md-9">
-                        <!-- <script type="text/javascript">
+                </div>
+                <div class="col-md-9">
+                    <!-- <script type="text/javascript">
                             $(".link-site-more").hover(
                                 function () {
                                     $(this).find(".s-c-n").show();
@@ -42,61 +76,81 @@
                         </script>
                         <script src="/app/services/accountServices.js"></script>
                         <script src="/app/controllers/accountController.js"></script> -->
-                        <div class="login-content clearfix ng-scope" ng-controller="accountController">
-                            <h1 class="title"><span>Đăng nhập hệ thống</span></h1>
-                            <!-- ngIf: IsError -->
-                            <!-- ngIf: IsSuccess -->
-                            <!-- ngIf: InValid -->
-                            <div class="col-md-7 col-xs-12 col-sm-12 col-xs-offset-0 col-sm-offset-0">
-                                <!-- form login -->
-                                <form
-                                    action="/login/signin"
-                                    method="post"
-                                    class="form-horizontal ng-pristine ng-valid-email ng-invalid ng-invalid-required"
-                                >
-                                    <i class="mb-3" th:text="${message}" style="color: red"></i>	
-                                    <i class="mb-3" th:text="${message1}" style="color: green"></i>
-                                    <div class="form-group">
-                                        <label for="Email" class="col-sm-4 control-label">Username</label>
-                                        <div class="col-sm-8">
-                                            <input
-                                                name="username"
-                                                type="username"
-                                                class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
-                                                ng-model="Email"
-                                                ng-required="true"
-                                            />
-                                        </div>
+                    <div class="login-content clearfix ng-scope" ng-controller="accountController">
+                        <h1 class="title"><span>Đăng nhập hệ thống</span></h1>
+                        <!-- ngIf: IsError -->
+                        <!-- ngIf: IsSuccess -->
+                        <!-- ngIf: InValid -->
+                        <div class="col-md-7 col-xs-12 col-sm-12 col-xs-offset-0 col-sm-offset-0">
+                            <!-- form login -->
+                            <form action="/login/signin" method="post"
+                                class="form-horizontal ng-pristine ng-valid-email ng-invalid ng-invalid-required">
+                                <i class="mb-3" th:text="${message}" style="color: red"></i>
+                                <i class="mb-3" th:text="${message1}" style="color: green"></i>
+                                <div class="form-group">
+                                    <label for="Email" class="col-sm-4 control-label">Username</label>
+                                    <div class="col-sm-8">
+                                        <input name="username" type="username"
+                                            class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required"
+                                            ng-model="Email" ng-required="true" />
                                     </div>
-                                    <div class="form-group">
-                                        <label for="Password" class="col-sm-4 control-label">Mật khẩu</label>
-                                        <div class="col-sm-8">
-                                            <input
-                                                name="password"
-                                                type="password"
-                                                class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
-                                                ng-model="Password"
-                                                ng-required="true"
-                                            />
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Password" class="col-sm-4 control-label">Mật khẩu</label>
+                                    <div class="col-sm-8">
+                                        <input name="password" type="password"
+                                            class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required"
+                                            ng-model="Password" ng-required="true" />
                                     </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-4 col-sm-8">
-                                            <button class="btn btn-default">Đăng nhập</button>
-                                            <a th:href="@{/loadForgotPassword}">Quên mật khẩu</a>
-                                        </div>
-                                        <div>
-                                        	   <a href="https://accounts.google.com/o/oauth2/v2/auth">Google</a>
-                                        </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-8">
+                                        <button class="btn btn-default">Đăng nhập</button>
+                                        <a th:href="@{/loadForgotPassword}">Quên mật khẩu</a>
                                     </div>
-                                    
-                                </form>
-                            </div>
+                                    <br>
+                                    <br>
+                                    <hr>
+                                    <hr>
+                                    <div>
+                                        <h2>Spring Boot Security Login with Google+</h2>
+                                        
+                                      <div id="gSignInWrapper" class="btn btn-light" onclick="trySampleRequest()">
+									    <div id="customBtn" class="customGPlusSignIn text-dark">
+									       <i class="fa-brands fa-google-plus-g"></i>
+									       <span class="buttonText">Google</span>  
+									    </div>
+									  </div>
+
+                                        <br />
+                                      <!--   <form name='login-form' th:action="@{/j_spring_security_login}" method='POST'>
+                                            <table>
+                                                <tr>
+                                                    <td>Username:</td>
+                                                    <td><input type='text' name='username' value=''></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Password:</td>
+                                                    <td><input type='password' name='password' /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input name="submit" type="submit" value="submit" /></td>
+                                                </tr>
+                                            </table>
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </form> -->
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
-        </main>
-    </body>
+        </div>
+        <script src="/js/Myjs/loginGoogle.js"></script>
+    </main>
+</body>
+
 </html>
