@@ -9,7 +9,7 @@ import com.example.entity.Product;
 
 public interface ProductService {
 
-	List<Product> getProducts();
+//	List<Product> getProducts();
 
 	Product findById(Long id);
 

@@ -1,10 +1,10 @@
-spring:
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: 645499223410-is0himlfkg16k92arvo1ds2joaailjqd.apps.googleusercontent.com
-            client-secret: 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
-            
-           
+#spring:
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          google:
+#            client-id: 645499223410-is0himlfkg16k92arvo1ds2joaailjqd.apps.googleusercontent.com
+#            client-secret: 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
+#            
+#           

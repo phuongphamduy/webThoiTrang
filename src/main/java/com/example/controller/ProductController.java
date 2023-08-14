@@ -77,6 +77,13 @@ public class ProductController {
 		return "admin/index";
 	}
 	
+	
+	
+//	@RequestMapping("/")
+//	public String adminn(Model model) {
+//		return "/user";
+//	}
+//	
 ////	@PreAuthorize("hasAnyRole('ADMIN','USER')") //demo4
 //	@RequestMapping("/users")
 //	public String users(Model model) {
