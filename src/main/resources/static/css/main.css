@@ -158,15 +158,6 @@
 .product-button button i {
   font-size: 20px;
 }
-.title:after {
-  border-color: transparent transparent #429a9d;
-  border-style: solid;
-  border-width: 0px 60px 45px 0px;
-  content: "";
-  position: absolute;
-  /* right: 0; */
-  /* left: 2px; */
-}
 
 .pagination li a {
   display: inline-block;
