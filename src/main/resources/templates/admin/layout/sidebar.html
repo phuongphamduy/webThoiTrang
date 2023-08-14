@@ -158,16 +158,20 @@
                                 </a>
                             </div>
                         </div>
-                        <span style="
-                    margin-right: 20px;
-                    display: flex;
-                    align-items: center;
-                    color: #7a7a7a;
-                    font-size: 1.2rem;
-                    font-weight: 400;
-                  ">Tuấn Lê</span>
+                         <th:block th:if="${#request.remoteUser}">
+							<span style="
+			                    margin-right: 20px;
+			                    display: flex;
+			                    align-items: center;
+			                    color: #7a7a7a;
+			                    font-size: 1.2rem;
+			                    font-weight: 400;
+			                  ">[[${#request.remoteUser}]]</span>					
+						</th:block>
+                       
                         <img src="https://haycafe.vn/wp-content/uploads/2022/02/Avatar-trang-den.png" height="40px"
                             width="40px" />
+                           
                     </form>
                 </div>
             </div>
