@@ -50,9 +50,9 @@ app.controller("myCtrl", ($scope, $http) => {
   //upload
   $scope.imageChanged = (files) => {
     var data = new FormData();
-    data.append("file", files[0]);
+    data.append("file", files[0]); 
     $http
-      .post("/rest/upload/products", data, {
+      .post("/rest/upload/product", data, {
         transformRequest: angular.identity,
         headers: { "Content-Type": undefined },
       })
