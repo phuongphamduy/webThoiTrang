@@ -9,7 +9,6 @@
 
 <body>
     <main ng-app="myapp" ng-controller="order-ctrl">
-
         <div style="margin-left: 15%; padding: 10px">
             <span style="font-size: 40px">Danh sách đơn hàng đang chờ</span>
 
@@ -54,7 +53,7 @@
                                     </td>
                                     <td>
                                         <!-- <a href="/admin/order/detail?id=${o.id }" class="btn btn-primary">Chi tiết</a> -->
-                                        <a href="/admin/order/detail" ng-click="edit(o.id)" class="btn btn-primary">Chi tiết</a>
+                                        <a ng-href="/admin/order/detail/{{o.id}}" class="btn btn-primary">Chi tiết</a>
                                     </td>
                                 </tr>
 							

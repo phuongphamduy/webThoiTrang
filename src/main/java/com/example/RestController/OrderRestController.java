@@ -35,7 +35,7 @@ public class OrderRestController {
 	}
 	
 	@GetMapping("{id}")
-	public List<OrderDetail> od(@PathVariable("id") Integer id, @RequestBody OrderDetail od ) {
-		return service.findAllOD();
+	public List<OrderDetail>  od(@PathVariable("id") Integer id) {
+		return service.findById(id).getOrderDetails();
 	}
 }

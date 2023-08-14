@@ -30,29 +30,29 @@
                                 <th>Sản phẩm</th>
                                 <th>Hình ảnh</th>
                                 <th>Số lượng</th>
-                                <th>Giá</th>                                
+                                <th>Giá</th>
                             </tr>
                         </thead>
-                        <tbody>                    
-                                <tr ng-repeat="od in items">
-                                    <td>{{od.order.id}}</td>
-                                    <td>{{od.product.name}}</td>
-                                    <td><img src="/images/product/{{od.product.image}}" height="70px" width="70px"
+                        <tbody>
+                            <tr th:each="item : ${list}" th:object="${item}">
+                                <td>[[*{order.id}]]</td>
+                                <td>[[*{product.name}]]</td>
+                                <td><img th:src="@{|/images/product/*{product.image}|}" height="70px" width="70px"
                                         style="object-fit: cover;" alt=""></td>
-                                    <td>{{od.quantity}}</td>
-                                    <td>
-										<fmt:formatNumber pattern="#,##0"/>{{od.price}}0 VNĐ
-									</td>
-                                </tr>
-                           
+                                <td>[[*{quantity}]]</td>
+                                <td>
+                                    [[${#numbers.formatDecimal(item.price, 0, 'COMMA', 3, 'POINT')}]]VNĐ
+                                </td>
+                            </tr>
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <script src="/js/Myjs/AdminJS/OrderDetailAdmin.js"></script>
+        <script src="/js/Myjs/AdminJS/OrderAdmin.js"></script>
     </main>
-     
+
 </body>
 
 </html>
