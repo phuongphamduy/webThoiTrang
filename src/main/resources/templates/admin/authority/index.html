@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/admin/index ::dynamic(~{:: main})}">
+<head>
+<meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+</head>
+<body>
+	<main ng-app="app" ng-controller="authority-ctrl">
+		<div style="margin-left: 15%; padding: 10px">
+			<span style="font-size: 40px">AUTHORIZING</span>
+
+			<div class="card">
+
+				<div class="card-body">
+					<!-- search -->
+					<jsp:include page="/views/Admin/Layout/search.jsp"></jsp:include>
+					<table class="table table-border">
+						<thead class="bg-success" style="font-variant: small-caps;">
+							<tr>
+								<th>Tên người dùng</th>
+								<th ng-repeat="role in roles" class="text-center">{{role.name}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="acc in admins">
+								<td>{{acc.fullname}}</td>
+								<th ng-repeat="role in roles" class="text-center"><input
+									ng-checked="authority_of(acc, role)"
+									ng-click="authority_changed(acc, role)" type="checkbox">
+								</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<script src="/js/Myjs/AdminJS/authority/authorityctrl.js"></script>
+	</main>
+
+</body>
+</html>
