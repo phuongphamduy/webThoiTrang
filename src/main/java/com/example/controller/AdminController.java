@@ -29,8 +29,12 @@ public class AdminController {
 
     @RequestMapping("/admin")
     public String index(Model model) {
-
         return "admin/index";
+    }
+    
+    @RequestMapping("/admin/authority")
+    public String authority(Model model) {
+        return "admin/authority/index";
     }
 
     @RequestMapping("/admin/form/danhmuc")

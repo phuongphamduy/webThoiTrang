@@ -18,10 +18,24 @@ public class AccountServiceImpl implements AccountService{
 	public List<Account> getUser() {
 		return dao.findAll();
 	}
+	
+	public List<Account> findAll() {
+		return dao.findAll();
+	}
 
 	@Override
 	public Account findById(String username) {
 		return dao.findById(username).get();
+	}
+	
+	public List<Account> getAdministrators() {
+		return dao.getAdministrators();
+	}
+	
+	@Override
+	public Account findById(String id, String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -34,4 +48,6 @@ public class AccountServiceImpl implements AccountService{
 		return dao.save(account);
 	}
 
+	
+	
 }
